@@ -199,7 +199,7 @@
     padding: 25px 0 25px 65px;
     font-weight: 500;
 }
-.header-bottom .vertical-menu > .menu > .item > a img {
+.header-bottom .vertical-menu .menu > .item > a img {
     position: absolute;
     width: 24px;
     height: 25px;

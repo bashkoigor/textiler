@@ -1,25 +1,20 @@
 $(document).on('click', '.vertical-menu', (e) => {
     $( e.currentTarget ).find(".menu").toggleClass("show-menu");
 });
-$(document).ready(function(){
-    $(".vertical-menu").click(function() {
-        $( this ).find(".menu").toggleClass("show-menu");
-    });
-    $( ".vertical-menu .menu .item" ).hover(
-        function() {
-            // If exist submenu
-            if ($( this ).find(".dropdown-menu ul").length) {
-                $( this ).find("a").addClass('active');
-            }
-            $( this ).find(".dropdown-menu").css("visibility", "visible");
-            $( this ).find(".dropdown-menu").css("opacity", 1);
-        }, function() {
-            $( this ).find("a").removeClass('active');
-            $( this ).find(".dropdown-menu").css("visibility", "hidden");
-            $( this ).find(".dropdown-menu").css("opacity", 0);
+$(document).on({
+    mouseenter: function () {
+        if ($( this ).find(".dropdown-menu ul").length) {
+            $( this ).find("a").addClass('active');
         }
-    );
-});
+        $( this ).find(".dropdown-menu").css("visibility", "visible");
+        $( this ).find(".dropdown-menu").css("opacity", 1);
+    },
+    mouseleave: function () {
+        $( this ).find("a").removeClass('active');
+        $( this ).find(".dropdown-menu").css("visibility", "hidden");
+        $( this ).find(".dropdown-menu").css("opacity", 0);
+    }
+}, ".vertical-menu .menu .item");
 
 // Recommended product carousel
 const obRecommended1 = document.querySelector("#recommended1");
@@ -166,5 +161,5 @@ if (toggleConfirmPassword) {
 }
 // Modal menu by Ajax, show categorys.
 $.request('onAjax', {
-    update: { 'site/vertical-menu': '.vertical-menu-wrapper' }
+    update: { 'site/vertical-menu': '.menu-wrapper' }
 });
