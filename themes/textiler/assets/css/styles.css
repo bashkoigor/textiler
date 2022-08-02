@@ -761,6 +761,9 @@
     -o-box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     box-shadow: 0 0 20px rgb(0 0 0 / 15%);
 }
+.content {color: #666;}
+.content p, .content ul, .content ol, .content table {font-size: 14px;}
+
 .login form h6 {text-transform: uppercase;}
 .login form .text {font-size: 14px; font-weight: 300;}
 .login form span .text {font-size: 13px; color: #bab7b7;}

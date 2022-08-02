@@ -4,18 +4,14 @@
         <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button"
            data-bs-toggle="dropdown" aria-expanded="false">{{ 'Productos'|_ }}</a>
         <ul class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
-            <li><a class="" href="#">{{ 'Para la costura y el bordado'|_ }}</a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="" href="#">{{ 'Para la limpieza'|_ }}</a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="" href="#">{{ 'Para planchar y vaporizar'|_ }}</a></li>
+            <li><a href="/catalog/para-la-costura-y-el-bordado">{{ 'Para la costura y el bordado'|_ }}</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a href="/catalog/para-la-limpieza">{{ 'Para la limpieza'|_ }}</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a href="/catalog/para-planchar-y-vaporizar">{{ 'Para planchar y vaporizar'|_ }}</a></li>
         </ul>
     </li>
-    <li><a href="#blog-carousel">{{ 'Blog'|_ }}</a></li>
-    <li><a href="">{{ 'Nosotros'|_ }}</a></li>
-    <li><a href="">{{ 'FAQ'|_ }}</a></li>
+    <li><a href="{{ 'index'|page }}#blog-carousel">{{ 'Blog'|_ }}</a></li>
+    <li><a href="{{ 'nosotros'|page }}">{{ 'Nosotros'|_ }}</a></li>
+    <li><a href="{{ 'faq'|page }}">{{ 'FAQ'|_ }}</a></li>
 </ul>
