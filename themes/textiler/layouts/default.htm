@@ -4,11 +4,17 @@ description = "Default layout"
 ==
 function onInit() {
 
-    //echo '<pre>';
-    $obCategoryList = $this->CategoryList->make()->tree();
-    foreach ($obCategoryList as $id => $value) {
-        //var_dump($value);
-    }
+    /* Set currency by locale */
+
+    $arCurrency = [
+    "ru" => "RUB",
+    "en" => "USD",
+    "es" => "EUR",
+    ];
+
+    $currentLocale = \RainLab\Translate\Classes\Translator::instance()->getLocale();
+    \Lovata\Shopaholic\Classes\Helper\PriceTypeHelper::instance()->switchActive($arCurrency[$currentLocale]);
+    \Lovata\Shopaholic\Classes\Helper\CurrencyHelper::instance()->switchActive($arCurrency[$currentLocale]);
 
 }
 ==

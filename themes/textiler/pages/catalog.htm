@@ -1,0 +1,87 @@
+title = "Каталог"
+layout = "default"
+
+url = "/catalog/:category*/:slug?"
+is_hidden = 0
+
+[CategoryPage MainCategoryPage]
+slug = "{{ :category }}"
+slug_required = 1
+smart_url_check = 1
+has_wildcard = 1
+skip_error = 0
+
+[CategoryPage]
+slug = "{{ :slug }}"
+slug_required = 0
+smart_url_check = 1
+has_wildcard = 0
+skip_error = 1
+
+[ProductList]
+sorting = "price|desc"
+
+[Pagination]
+available_count_per_page = 12
+count_per_page = 6
+pagination_limit = 5
+active_class = "active"
+button_list = "first,prev,main,next,last"
+first_button_name = "<<"
+first_button_limit = 3
+first-more_button_name = "..."
+first-more_button_limit = 1
+prev_button_name = "<"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = ">"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 1
+last_button_name = ">>"
+last_button_limit = 3
+==
+function onInit() {
+$obMainCategoryItem = $this->MainCategoryPage->get();
+$obCategoryItem = $this->CategoryPage->get();
+$iPage = $this->Pagination->getPageFromRequest();
+
+if (empty($obCategoryItem)) {
+$obCategory = $obMainCategoryItem;
+$obProductList = $this->ProductList->make()->active()->category($obMainCategoryItem->id, true);
+} else {
+$obCategory = $obCategoryItem;
+$obProductList = $this->ProductList->make()->active()->category($obCategoryItem->id, true);
+}
+
+$arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
+$iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
+
+$this['obCategory'] = $obCategory;
+$this['arProductList'] = $arProductList;
+$this['iPage'] = $iPage;
+$this['iMaxPage'] = $iMaxPage;
+$this['iCount'] = $obProductList->count();
+
+}
+==
+{% put pageTitle %}
+{{ obCategory.name }}
+{% endput %}
+<div class="main">
+    <div class="breadcrumb-wrapper mb-5">
+        <div class="container py-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="#">Para la costura y el bordado</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Maquinas de coser</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    {% partial 'catalog/product-list' %}
+</div>

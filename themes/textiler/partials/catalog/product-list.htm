@@ -1,0 +1,107 @@
+<div class="container category">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="title">
+                <h6>{{ obCategory.name }}</h6>
+            </div>
+            <hr>
+        </div>
+        <div class="col-lg-9">
+            <h4 class="mb-5">{{ obCategory.name }}</h4>
+
+            <div class="row mb-5 gx-1 settings-category">
+
+                <div class="col-xl-2 col-lg-2 col-md-2 d-md-block d-none">
+                    <div id="grid-view" class="active"><i class="fa fa-th"></i></div>
+                    <div id="list-view"><i class="fa fa-bars"></i></div>
+                </div>
+
+                <div class="col-xl-2 col-lg-5 col-md-5 col-sm-6 col-6 d-flex align-self-center">
+                    Hay 12 productos.
+                </div>
+
+                <div class="col-xl-5 d-xl-block d-none d-flex align-self-center">
+                    <hr>
+                </div>
+
+                <div class="col-xl-3 col-lg-5 col-md-5 col-sm-6 col-6">
+                    <div class="dropdown d-flex justify-content-end">
+                        <button class="btn btn-sort dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            {% if arProductList is not empty %}
+            <div class="row grid my-4" id="grid-list">
+                {% for obProduct in arProductList %}
+                {% set obOffer = obProduct.offer.first() %}
+                <div class="column col-md-4 col-6">
+                    <div class="item">
+                        <div class="image">
+                            <a href="{{ obProduct.getPageUrl('product') }}">
+                                <img src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                            </a>
+                        </div>
+                        <div class="description">
+                            <div class="title">
+                                <a href="{{ obProduct.getPageUrl('product') }}">{{ obProduct.name }}</a>
+                            </div>
+                            <div class="info">
+                                <div class="star-content">
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                                <div class="price">{{ obOffer.price }} {{ obOffer.currency }}</div>
+                                <div class="text">{{ obProduct.preview_text }}</div>
+                            </div>
+                            <button type="button" class="btn btn-add-to-cart">
+                                <i class="in-cart-icon" aria-hidden="true"></i> {{ 'Añadir al carrito'|_ }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>{{ 'Productos no encontrados'|_ }}</p>
+            {% endif %}
+
+            <div class="row mb-5 gx-1 settings-category">
+
+                <div class="col-xl-4 col-lg-6 col-md-6 d-md-block d-none col-12 d-flex align-self-center">
+                    Mostrando 13-24 de 83 artículo(s)
+                </div>
+
+                <div class="col-xl-3 d-xl-block d-none d-flex align-self-center">
+                    <hr>
+                </div>
+
+                <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <nav class="d-flex justify-content-center justify-content-md-end">
+                        <ul class="pagination mb-0">
+                            <li class="page-item"><a class="page-link text" href="#">Anterior</a></li>
+                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">...</a></li>
+                            <li class="page-item"><a class="page-link text" href="#">Próximo</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
