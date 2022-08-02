@@ -1,0 +1,99 @@
+<div class="header-top py-4 d-md-block d-none">
+    <div class="container">
+        <div class="row align-items-center no-gutters">
+            <div class="col-xl-3 col-md-2">
+                <a href="{{ 'index'|page }}">
+                    <img class="logo img-fluid" src="{{ 'logo/textiler-logo.jpg'|media }}" alt="Textiler">
+                </a>
+            </div>
+            <div class="col-xl-6 col-md-7 text-center position-static">
+                {% partial 'site/top-menu' %}
+            </div>
+            <div class="col-md-3 d-flex align-items-center justify-content-end header-top-right">
+                <ul class="nav nav-pills justify-content-center top-info">
+                    <li>
+                        <a href="" title="{{ 'Mi lista de deseos'|_ }}">
+                            <i class="wishlist-icon"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="header-cart">
+                            <a href="">
+                                <i class="shopping-cart-icon"></i>
+                            </a>
+                            <span class="cart-products-count">0</span>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="account-icon"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdown2">
+                            <li>
+                                <a class="login" href="" rel="nofollow"
+                                   title="Log in to your customer account">
+                                    <i class="fa fa-sign-in"></i>
+                                    <span>{{ 'Entrar'|_ }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="register" href=""
+                                   rel="nofollow" title="{{ 'Registrarse'|_ }}">
+                                    <i class="fa fa-user"></i>
+                                    <span>{{ 'Registrarse'|_ }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="check-out" href="" rel="nofollow"
+                                   title="{{ 'Checkout'|_ }}">
+                                    <i class="fa fa-check-circle"></i>
+                                    <span>{{ 'Checkout'|_ }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a href=""
+                                   title="{{ 'Mi lista de deseos'|_ }}">
+                                    <i class="fa fa-heart"></i>
+                                    <span>{{ 'Mi lista de deseos'|_ }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header-mobile mb-0 mb-md-3 d-block d-md-none">
+    <div class="container-fluid py-2">
+        <div class="row g-2">
+            <div class="col-1 d-flex justify-content-center align-self-center">
+                <i class="fas fa-stream" aria-hidden="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft"></i>
+            </div>
+            <div class="col-4">
+                <a href="{{ 'index'|page }}">
+                    <img class="logo" src="{{ 'logo/mobile-logo.png'|media }}" alt="Textiler">
+                </a>
+            </div>
+            <div class="col-6">
+                <div class="search-wrapper">
+                    <input type="text" class="form-control" id="search-input2" placeholder="{{ 'Ingrese palabras clave de búsqueda'|_ }}">
+                    <button class="btn" type="button"><i class="fas fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="col-1 d-flex justify-content-center align-self-center">
+                <i class="fas fa-bars" aria-hidden="true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+            </div>
+        </div>
+    </div>
+</div>

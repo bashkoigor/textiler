@@ -1,0 +1,49 @@
+{% set obCategoryList = CategoryList.make().tree() %}
+{% if obCategoryList.isNotEmpty() %}
+<div class="vertical-menu">
+    <div class="menu-title">
+        <i class="fas fa-stream"></i>
+        <span>{{ 'Categorias'|_ }}</span>
+    </div>
+    <ul class="menu level1">
+        {# TODO: If obParentCategory.product_count > 0 #}
+        {% for obParentCategory in obCategoryList %}
+            <li class="item">
+                <a href="{{ obParentCategory.getPageUrl('catalog') }}" title="{{ obParentCategory.name }}">
+                    {% if obParentCategory.icon is not empty %}
+                    <img src="{{ obParentCategory.icon.path }}" alt="">
+                    {% endif %}
+                    {{ obParentCategory.name }}
+                </a>
+                <span class="show-sub fa-active-sub"></span>
+                {% if obParentCategory.children.isNotEmpty() %}
+                <div class="dropdown-menu">
+                    <ul>
+                        {% for obChildCategory in obParentCategory.children %}
+                            <li class="item">
+                                <a href="{{ obChildCategory.getPageUrl('catalog') }}" title="{{ obChildCategory.name }}">
+                                    <img src="https://textiler.es/themes/vinova_nuranium/assets/img/modules/novverticalmenu/icon/maquinasdecoser123textiler.png" alt="">
+                                    {{ obChildCategory.name }}
+                                </a>
+                            </li>
+                            {% if loop.last == false %}
+                            <hr class="menu-divider">
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </li>
+            <hr class="menu-divider">
+        {% endfor %}
+        <li class="item">
+            <a href="" title="">
+                <img src="{{ 'icons/categories/Ver_todo.png'|media }}" alt="{{ 'Ver todo'|_ }}">
+                {{ 'Ver todo'|_ }}
+            </a>
+            <span class="show-sub fa-active-sub"></span>
+        </li>
+    </ul>
+</div>
+{% endif %}
+

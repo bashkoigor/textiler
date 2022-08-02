@@ -1,0 +1,49 @@
+description = "Default layout"
+
+[CategoryList]
+==
+function onInit() {
+
+    //echo '<pre>';
+    $obCategoryList = $this->CategoryList->make()->tree();
+    foreach ($obCategoryList as $id => $value) {
+        //var_dump($value);
+    }
+
+}
+==
+<!doctype html>
+<html lang="es">
+<head>
+    {% partial 'site/meta' %}
+    {% partial 'site/script-head' %}
+    <title>{{ placeholder('pageTitle') ?: (this.page.meta_title ?: this.page.title) }} - Textiler</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="sticky-top">
+        {% partial 'site/header' %}
+    </header>
+    {% partial 'site/header-bottom' %}
+
+    <!-- Menu mobile -->
+    {% partial 'site/menu-mobile' %}
+
+    <!-- Content -->
+    <div class="main">
+        {% page %}
+    </div>
+
+    <!-- Footer -->
+    {% partial 'site/footer-mobile' %}
+    {% partial 'site/footer' %}
+    {% partial 'site/second-footer' %}
+    <div id="to-top">
+        <i class="far fa-arrow-alt-circle-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    {% partial 'site/script-footer' %}
+    {% scripts %}
+</body>
+</html>
