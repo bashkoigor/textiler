@@ -1,0 +1,24 @@
+tabs:
+    fields:
+        main_slider:
+            tab: 'Слайдер'
+            type: repeater
+            displayMode: builder
+            form:
+                fields:
+                    desktop_img:
+                        label: Баннер
+                        type: mediafinder
+                        mode: image
+                        maxItems: 1
+                    mobile_img:
+                        label: Баннер (мобильная версия)
+                        type: mediafinder
+                        mode: image
+                        maxItems: 1
+                    details:
+                        label: Текст
+                        type: richeditor
+                    disable:
+                        label: Отключить
+                        type: checkbox

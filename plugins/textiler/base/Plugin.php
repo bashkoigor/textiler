@@ -5,6 +5,7 @@
  */
 use Event;
 use System\Classes\PluginBase;
+use Textiler\Base\Classes\Event\Settings\ExtendSettingsModel;
 
 class Plugin extends PluginBase
 {
@@ -22,7 +23,8 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            '\Textiler\Base\Components\Breadcrumbs'     => 'Breadcrumbs'
+            '\Textiler\Base\Components\Breadcrumbs'     => 'Breadcrumbs',
+            '\Textiler\Base\Components\SiteSettings'    => 'SiteSettings',
         ];
     }
 
@@ -32,7 +34,16 @@ class Plugin extends PluginBase
      */
     public function registerSettings()
     {
-        return [];
+        return [
+            'config'    => [
+                'label'       => 'Textiler',
+                'description' => 'Общие настройки',
+                'icon'        => 'icon-cogs',
+                'class'       => 'Textiler\Base\Models\Settings',
+                'permissions' => ['textiler-site-settings'],
+                'order'       => 1000,
+            ],
+        ];
     }
 
     /**
