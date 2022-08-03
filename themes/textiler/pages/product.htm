@@ -16,22 +16,24 @@ redirect_page = "success"
 
 [ProductList]
 
+[Breadcrumbs]
 ==
 function onInit() {
-$obProduct = $this->ProductPage->get();
-if (!empty($this->param('slug')) && empty($obProduct)) {
-return $this->ProductPage->getErrorResponse();
-}
+    $obProduct = $this->ProductPage->get();
+    if (!empty($this->param('slug')) && empty($obProduct)) {
+        return $this->ProductPage->getErrorResponse();
+    }
 
-$obOffer        = $obProduct->offer->first();
-$obCategory     = $obProduct->category;
-$obMainCategory = $obCategory->parent->isNotEmpty() ? $obCategory->parent : '';
+    $obOffer        = $obProduct->offer->first();
+    $obCategory     = $obProduct->category;
+    $obMainCategory = $obCategory->parent->isNotEmpty() ? $obCategory->parent : '';
+    $this->Breadcrumbs->set($obProduct, $obCategory, $obMainCategory);
 
-$this['obPropertyList'] = $obProduct->property;
-$this['obProduct'] = $obProduct;
-$this['obOffer'] = $obOffer;
-$this['obProductList'] = $this->ProductList->make()->category($obCategory->id)->take(6);
-
+    $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
+    $this['obPropertyList'] = $obProduct->property;
+    $this['obProduct'] = $obProduct;
+    $this['obOffer'] = $obOffer;
+    $this['obProductList'] = $this->ProductList->make()->category($obCategory->id)->take(6);
 }
 ==
 {% put pageTitle %}
@@ -39,17 +41,7 @@ $this['obProductList'] = $this->ProductList->make()->category($obCategory->id)->
 {% endput %}
 <!-- Product -->
 <div class="main">
-    <div class="breadcrumb-wrapper mb-5">
-        <div class="container py-3">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="#">Para la costura y el bordado</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Maquinas de coser</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
+    {% partial 'breadcrumbs/breadcrumbs' %}
     <div class="container product">
         <div class="row my-5">
             <div class="col-md-5 col-12">

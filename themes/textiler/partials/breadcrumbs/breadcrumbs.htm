@@ -1,0 +1,17 @@
+<div class="breadcrumb-wrapper mb-5">
+    <div class="container py-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% for item in arBreadcrumbs %}
+                    {% if item.name is not empty %}
+                        {% if loop.last %}
+                            <li class="breadcrumb-item active" aria-current="page">{{ item.name }}</li>
+                        {% else %}
+                            <li class="breadcrumb-item"><a href="{{ item.url }}">{{ item.name }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </nav>
+    </div>
+</div>
