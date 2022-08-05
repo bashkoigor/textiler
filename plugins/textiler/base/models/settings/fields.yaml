@@ -22,3 +22,41 @@ tabs:
                     disable:
                         label: Отключить
                         type: checkbox
+        index_page:
+            tab: 'Главная страница'
+            type: nestedform
+            span: full
+            form:
+                fields:
+                    menu_categories:
+                        label: 'Меню категорий'
+                        commentAbove: 'Количество дочерних категорий ограничено и не более 4, структура колонок заданна по умолчанию.'
+                        type: repeater
+                        itemsExpanded: false
+                        form:
+                            fields:
+                                category_id:
+                                    type: dropdown
+                                    emptyOption: Пусто
+                    recommended_products:
+                        label: 'Рекомендуемые товары'
+                        type: repeater
+                        displayMode: builder
+                        form:
+                            fields:
+                                title:
+                                    label: Заголовок
+                                    type: text
+                                product:
+                                    label: Товары
+                                    type: repeater
+                                    itemsExpanded: false
+                                    form:
+                                        fields:
+                                            product_id:
+                                                type: dropdown
+                                                emptyOption: Пусто
+
+
+
+

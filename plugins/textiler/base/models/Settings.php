@@ -1,5 +1,7 @@
 <?php namespace Textiler\Base\Models;
 
+use Lovata\Shopaholic\Models\Category;
+use Lovata\Shopaholic\Models\Product;
 use System\Models\File;
 use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
@@ -48,5 +50,25 @@ class Settings extends Model
 
         $sValue = $obSettings->$sCode;
         return $sValue;
+    }
+
+    /**
+     * Get category list
+     * @return array
+     */
+    public function getCategoryIdOptions()
+    {
+        $obCategoryList = Category::active()->orderBy('name', 'asc')->lists('name', 'id');
+        return $obCategoryList;
+    }
+
+    /**
+     * Get product list
+     * @return array
+     */
+    public function getProductIdOptions()
+    {
+        $obCategoryList = Product::active()->orderBy('name', 'asc')->lists('name', 'id');
+        return $obCategoryList;
     }
 }

@@ -1,37 +1,38 @@
 {# TODO: refactoring - fix show limit #}
-{% set obCategoryList = CategoryList.make().tree() %}
-{% if obCategoryList.isNotEmpty() %}
-<div class="row mt-5 pb-5 menu-categories">
-    {% set mainIndex = 0 %}
-    {% for obParentCategory in obCategoryList if mainIndex < 2 %}
-    {% set mainIndex = loop.index0 %}
-    {% set colClass = [['col-6','col-6','col-6','col-6'], ['col-12','col-6','col-6'], ['col-12','col-12']] %}
-    <div class="col-md-4">
-        <div class="py-4">
-            <div class="container-fluid">
-                <div class="row g-2">
-                    <div class="col-7">
-                        <h6 class="title">{{ obParentCategory.name }}</h6>
-                    </div>
-                    <div class="col-5">
-                        <a href="{{ obParentCategory.getPageUrl('catalog') }}" class="link">{{ 'Todas las categorías'|_ }}</a>
-                    </div>
-                    {% if obParentCategory.children.isNotEmpty() %}
-                        {% set childIndex = 0 %}
-                        {% for obChildCategory in obParentCategory.children if childIndex < 3 %}
-                        {% set childIndex = loop.index0 %}
-                        <div class="col-6 {{colClass[mainIndex][loop.index0]}} item">
-                            <a href="{{ obChildCategory.getPageUrl('catalog') }}">
-                                <img src="{{ obChildCategory.preview_image.path }}">
-                                <span>{{ obChildCategory.name }}</span>
-                            </a>
+
+{% set arIndexPageData = SiteSettings.get('index_page') %}
+{% if arIndexPageData['menu_categories'] is not empty %}
+    <div class="row mt-5 pb-5 menu-categories">
+        {% for arCategoryData in arIndexPageData['menu_categories'] %}
+            {% set mainIndex = loop.index0 %}
+            {% set obParentCategory = CategoryData.get(arCategoryData.category_id) %}
+            {% set colClass = [['col-6','col-6','col-6','col-6'], ['col-12','col-6','col-6'], ['col-12','col-12']] %}
+            <div class="col-md-4">
+                <div class="py-4">
+                    <div class="container-fluid">
+                        <div class="row g-2">
+                            <div class="col-7">
+                                <h6 class="title">{{ obParentCategory.name }}</h6>
+                            </div>
+                            <div class="col-5">
+                                <a href="{{ obParentCategory.getPageUrl('catalog') }}" class="link">{{ 'Todas las categorías'|_ }}</a>
+                            </div>
+                            {% if obParentCategory.children.isNotEmpty() %}
+                            {% set childIndex = 0 %}
+                            {% for obChildCategory in obParentCategory.children if childIndex < 3 %}
+                            {% set childIndex = loop.index0 %}
+                            <div class="col-6 {{colClass[mainIndex][loop.index0]}} item">
+                                <a href="{{ obChildCategory.getPageUrl('catalog') }}">
+                                    <img src="{{ obChildCategory.preview_image.path }}">
+                                    <span>{{ obChildCategory.name }}</span>
+                                </a>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
                         </div>
-                        {% endfor %}
-                    {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 {% endif %}
