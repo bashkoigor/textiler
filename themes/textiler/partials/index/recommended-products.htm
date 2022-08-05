@@ -1,0 +1,539 @@
+{% set arIndexPageData = SiteSettings.get('index_page') %}
+{% if arIndexPageData['recommended_products'] is not empty %}
+
+    {% for arRecommendedProductsData in arIndexPageData['recommended_products'] %}
+    <div class="row mt-2 mt-md-5">
+        <div class="recommended-title">
+            {% if loop.index == 1 %}
+            <h5>{{ 'PRODUCTOS RECOMENDADOS'|_ }}</h5>
+            {% endif %}
+            <p>{{ arRecommendedProductsData['title'] }}</p>
+        </div>
+        <div id="recommended{{ loop.index }}" class="recommended carousel">
+            {% for arProducts in arRecommendedProductsData['products'] %}
+            {% set obProduct = ProductData.get(arProducts.product_id) %}
+            {% set obOffer = obProduct.offer.first() %}
+            <div class="carousel__slide">
+                <div class="card text-center">
+                    <div class="card-link">
+                        <a href="{{ obProduct.getPageUrl('product') }}" class="stretched-link"></a>
+                        {% if obProduct.preview_image is not empty %}
+                        <img src="{{ obProduct.preview_image.path }}" class="card-img-top" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                        {% endif %}
+                        <div class="card-body px-0 px-md-3">
+                            <h6 class="card-title">{{ obProduct.name }}</h6>
+                            <div class="card-text">
+                                <div class="star-content">
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                                <div class="price">{{ obOffer.price }} {{ obOffer.currency }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body d-none d-md-block">
+                        <button type="button" class="btn btn-add-to-cart">
+                            <i class="in-cart-icon" aria-hidden="true"></i> {{ 'Añadir al carrito'|_ }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+<div class="d-none row mt-0 mt-md-5">
+    <div class="recommended-title">
+        <h5>PRODUCTOS RECOMENDADOS</h5>
+        <p>Máquinas de coser</p>
+    </div>
+    <div id="recommended1" class="recommended carousel">
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-none row mt-2 mt-md-5">
+    <div class="recommended-title">
+        <p>Máquinas de coser+bordar</p>
+    </div>
+    <div id="recommended2" class="recommended carousel">
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-none row mt-2 mt-md-5">
+    <div class="recommended-title">
+        <p>Vaporizadores / Planchas de vapor</p>
+    </div>
+    <div id="recommended3" class="recommended carousel">
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel__slide">
+            <div class="card text-center">
+                <div class="card-link">
+                    <a href="index2.html" class="stretched-link"></a>
+                    <img src="https://textiler.es/210-home_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" class="card-img-top" alt="">
+                    <div class="card-body px-0 px-md-3">
+                        <h6 class="card-title">MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2</h6>
+                        <div class="card-text">
+                            <div class="star-content">
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <div class="price">11.561,98&nbsp;€</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body d-none d-md-block">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

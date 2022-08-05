@@ -47,7 +47,7 @@ tabs:
                                 title:
                                     label: Заголовок
                                     type: text
-                                product:
+                                products:
                                     label: Товары
                                     type: repeater
                                     itemsExpanded: false
