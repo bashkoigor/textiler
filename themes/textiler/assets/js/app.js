@@ -161,5 +161,9 @@ if (toggleConfirmPassword) {
 }
 // Modal menu by Ajax, show categorys.
 $.request('onAjax', {
-    update: { 'site/vertical-menu': '.menu-wrapper' }
+    update: {
+        'site/menu': '.menu-wrapper',
+        'site/mobile/menu': '.mobile-menu-wrapper',
+        'site/mobile/top-menu': '.mobile-page-menu-wrapper'
+    }
 });

@@ -1,0 +1,36 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">{{ 'MENÚ'|_ }}</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="accordion" id="accordionRight">
+            <a href="{{ 'index'|page }}" class="single">{{ 'Inicio'|_ }}</a>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRight1" aria-expanded="false" aria-controls="collapseRight1">
+                        {{ 'Productos'|_ }}
+                    </button>
+                </h2>
+                <div id="collapseRight1" class="accordion-collapse collapse" aria-labelledby="collapseRight1" data-bs-parent="#accordionRight">
+                    <div class="accordion-body">
+                        <ul>
+                            <li class="item">
+                                <a href="/catalog/para-la-costura-y-el-bordado">{{ 'Para la costura y el bordado'|_ }}</a>
+                            </li>
+                            <li class="item">
+                                <a href="/catalog/para-la-limpieza">{{ 'Para la limpieza'|_ }}</a>
+                            </li>
+                            <li class="item">
+                                <a href="/catalog/para-planchar-y-vaporizar">{{ 'Para planchar y vaporizar'|_ }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <a href="#blog-carousel" class="single" data-bs-dismiss="offcanvas" aria-label="Close">{{ 'Blog'|_ }}</a>
+            <a href="{{ 'nosotros'|page }}" class="single">{{ 'Nosotros'|_ }}</a>
+            <a href="{{ 'faq'|page }}" class="single">{{ 'FAQ'|_ }}</a>
+        </div>
+    </div>
+</div>

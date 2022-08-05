@@ -1,0 +1,44 @@
+{% set obCategoryList = CategoryList.make().tree() %}
+{% if obCategoryList.isNotEmpty() %}
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLeftLabel">{{ 'Categorias'|_ }}</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="accordion" id="accordionLeft">
+            {% for obParentCategory in obCategoryList %}
+            <div class="accordion-item">
+                {% if obParentCategory.children.isNotEmpty() %}
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeft{{ loop.index }}" aria-expanded="false" aria-controls="collapseLeft1">
+                        {{ obParentCategory.name }}
+                    </button>
+                </h2>
+                {% else %}
+                <a href="{{ obParentCategory.getPageUrl('catalog') }}" class="single">{{ obParentCategory.name }}</a>
+                {% endif %}
+                <div id="collapseLeft{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionLeft">
+                    {% if obParentCategory.children.isNotEmpty() %}
+                    <div class="accordion-body">
+                        <ul>
+                            {% for obChildCategory in obParentCategory.children %}
+                            <li class="item">
+                                <a href="{{ obChildCategory.getPageUrl('catalog') }}" title="{{ obChildCategory.name }}" class="">
+                                    <img src="https://textiler.es/themes/vinova_nuranium/assets/img/modules/novverticalmenu/icon/maquinasdecoser123textiler.png" alt="">
+                                    {{ obChildCategory.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            <a href="" class="single">{{ 'Ver todo'|_ }}</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+

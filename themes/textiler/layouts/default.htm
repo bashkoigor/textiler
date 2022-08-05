@@ -40,7 +40,10 @@ function onInit() {
     {% partial 'site/header-bottom' %}
 
     <!-- Menu mobile -->
-    {% partial 'site/menu-mobile' %}
+    <div class="menu-categories-mobile">
+        <div class="mobile-menu-wrapper"></div>
+        <div class="mobile-page-menu-wrapper"></div>
+    </div>
 
     <!-- Content -->
     <div class="main">
@@ -48,7 +51,7 @@ function onInit() {
     </div>
 
     <!-- Footer -->
-    {% partial 'site/footer-mobile' %}
+    {% partial 'site/mobile/footer' %}
     {% partial 'site/footer' %}
     {% partial 'site/second-footer' %}
     <div id="to-top">
