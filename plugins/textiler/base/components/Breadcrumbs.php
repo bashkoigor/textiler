@@ -33,10 +33,12 @@ class Breadcrumbs extends ComponentBase
     {
         $arBreadcrumbs = [];
 
-        $arBreadcrumbs[] = [
-            'name' => $this->obProduct->name,
-            'url'  => $this->obProduct->getPageUrl('product'),
-        ];
+        if (!empty($this->obProduct)) {
+            $arBreadcrumbs[] = [
+                'name' => $this->obProduct->name,
+                'url' => $this->obProduct->getPageUrl('product'),
+            ];
+        }
 
         $arBreadcrumbs[] = [
             'name' => $this->obCategory->name,

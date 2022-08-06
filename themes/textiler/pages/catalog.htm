@@ -21,6 +21,8 @@ skip_error = 1
 [ProductList]
 sorting = "price|asc|EUR"
 
+[Breadcrumbs]
+
 [Pagination]
 available_count_per_page = 12
 count_per_page = 12
@@ -73,13 +75,18 @@ $this['itemFrom'] = $iNextPageCount * $iPageFromRequest;
 $this['item'] = ($iNextPageCount * $iPageFromRequest - $iNextPageCount) + 1;
 // TODO: Fix pagination
 
+$obMainCategory = $obCategory->parent->isNotEmpty() ? $obCategory->parent : '';
+$this->Breadcrumbs->set(null, $obCategory, $obMainCategory);
+$this['arBreadcrumbs'] = $this->Breadcrumbs->get();
+
 }
 ==
 {% put pageTitle %}
 {{ obCategory.name }}
 {% endput %}
 <div class="main">
-    <div class="breadcrumb-wrapper mb-5">
+    {% partial 'breadcrumbs/breadcrumbs' %}
+    <div class="d-none breadcrumb-wrapper mb-5">
         <div class="container py-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
