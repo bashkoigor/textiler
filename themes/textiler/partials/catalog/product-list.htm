@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="col-xl-2 col-lg-5 col-md-5 col-sm-6 col-6 d-flex align-self-center">
-                    Hay 12 productos.
+                    Hay {{iNextPageCount}} productos.
                 </div>
 
                 <div class="col-xl-5 d-xl-block d-none d-flex align-self-center">
@@ -80,25 +80,14 @@
             <div class="row mb-5 gx-1 settings-category">
 
                 <div class="col-xl-4 col-lg-6 col-md-6 d-md-block d-none col-12 d-flex align-self-center">
-                    Mostrando 13-24 de 83 artículo(s)
+                    Mostrando {{item}} - {{itemFrom}} de {{iCount}} artículo(s)
                 </div>
 
                 <div class="col-xl-3 d-xl-block d-none d-flex align-self-center">
                     <hr>
                 </div>
 
-                <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <nav class="d-flex justify-content-center justify-content-md-end">
-                        <ul class="pagination mb-0">
-                            <li class="page-item"><a class="page-link text" href="#">Anterior</a></li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link text" href="#">Próximo</a></li>
-                        </ul>
-                    </nav>
-                </div>
+                {% partial 'pagination/pagination' %}
 
             </div>
 

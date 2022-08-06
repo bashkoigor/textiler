@@ -1,0 +1,16 @@
+{% set arPaginationList = Pagination.get(iPage, iCount) %}
+<div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12">
+    {% if arPaginationList|length > 1 %}
+    <nav class="d-flex justify-content-center justify-content-md-end">
+        <ul class="pagination mb-0">
+            {% for arPagination in arPaginationList %}
+            <li class="page-item">
+                <a class="page-link {{ arPagination.class }}" href="{{ url_current() }}?page={{ arPagination.value }}">
+                    {{ arPagination.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
