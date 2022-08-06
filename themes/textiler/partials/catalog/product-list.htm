@@ -30,9 +30,10 @@
                             Dropdown button
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="{{ url_current() }}?sort=price|asc|EUR">Price asc</a></li>
+                            <li><a class="dropdown-item" href="{{ url_current() }}?sort=price|desc|EUR">Price desc</a></li>
+                            <li><a class="dropdown-item" href="{{ url_current() }}?sort=new">New</a></li>
+                            <li><a class="dropdown-item" href="{{ url_current() }}?sort=no">No</a></li>
                         </ul>
                     </div>
                 </div>
