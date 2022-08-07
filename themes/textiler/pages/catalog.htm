@@ -84,16 +84,5 @@ $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
 {% endput %}
 <div class="main">
     {% partial 'breadcrumbs/breadcrumbs' %}
-    <div class="d-none breadcrumb-wrapper mb-5">
-        <div class="container py-3">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="#">Para la costura y el bordado</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Maquinas de coser</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
     {% partial 'catalog/product-list' %}
 </div>
