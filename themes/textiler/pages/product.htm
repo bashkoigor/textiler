@@ -33,7 +33,8 @@ function onInit() {
     $this['obPropertyList'] = $obProduct->property;
     $this['obProduct'] = $obProduct;
     $this['obOffer'] = $obOffer;
-    $this['obProductList'] = $this->ProductList->make()->category($obCategory->id)->take(6);
+
+    $this->addJs('assets/js/product.js');
 }
 ==
 {% put pageTitle %}
@@ -42,7 +43,8 @@ function onInit() {
 <!-- Product -->
 <div class="main">
     {% partial 'breadcrumbs/breadcrumbs' %}
-    <div class="container product">
+    <div class="container product product-wrapper">
+        <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
         <div class="row my-5">
             <div class="col-md-5 col-12">
                 <div class="gallery">
