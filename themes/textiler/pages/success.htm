@@ -1,0 +1,20 @@
+title = "Pedido completado"
+url = "/success/:slug"
+layout = "default"
+
+[OrderPage]
+slug = "{{ :slug }}"
+==
+{% set obOrder = OrderPage.get() %}
+<div class="main">
+    <div class="container">
+        <div class="row my-5">
+            <div class="col">
+                <h3>{{ 'Pedido creado'|_ }}</h3>
+                <div data-id="{{ obOrder.id }}">
+                    <p>{{ 'Número de orden'|_ }}: <b>{{ obOrder.order_number }}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

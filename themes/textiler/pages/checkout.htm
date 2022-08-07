@@ -1,0 +1,119 @@
+title = "Checkout"
+url = "/checkout"
+layout = "default"
+is_hidden = 0
+
+[MakeOrder]
+mode = "ajax"
+redirect_on = 1
+redirect_page = "success"
+
+==
+function onInit() {
+    $this->Breadcrumbs->set(null, null, null, $this->page->settings);
+    $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
+
+    $this->addJs('assets/js/checkout.js');
+}
+==
+{% set obCartPositionList = Cart.get() %}
+<div class="main">
+    {% partial 'breadcrumbs/breadcrumbs' %}
+    <div class="container checkout">
+        <div class="row my-5">
+            {% if obCartPositionList.isNotEmpty() %}
+            <div class="col-lg-8 col-12">
+                <div class="checkout-form">
+                    <p>{{ 'Datos Personales'|_ }}</p>
+                    <hr>
+                    <form class="row g-3 needs-validation" novalidate>
+                        <div class="col-md-6">
+                            <label for="validationCustom01" class="form-label"><i>*</i>{{ 'Nombre'|_ }}</label>
+                            <input type="text" class="form-control" id="validationCustom01" name="first_name" data-group="user" data-field="name" required>
+                            <div class="invalid-feedback">
+                                {{ 'El campo es obligatorio!'|_ }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom02" class="form-label"><i>*</i>{{ 'Apellido'|_ }}</label>
+                            <input type="text" class="form-control" id="validationCustom02" name="last_name" data-group="user" required>
+                            <div class="invalid-feedback">
+                                {{ 'El campo es obligatorio!'|_ }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom03" class="form-label"><i>*</i>{{ 'Dirección de correo electrónico'|_ }}</label>
+                            <input type="text" class="form-control" id="validationCustom03" name="email" data-group="user" required>
+                            <div class="invalid-feedback">
+                                {{ 'El campo es obligatorio!'|_ }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="validationCustom04" class="form-label"><i>*</i>{{ 'Teléfono'|_ }}</label>
+                            <input type="text" class="form-control" id="validationCustom04" name="phone" data-group="user" required>
+                            <div class="invalid-feedback">
+                                {{ 'El campo es obligatorio!'|_ }}
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="validationCustom05" class="form-label">{{ 'Descripción'|_ }}</label>
+                            <textarea class="form-control" id="validationCustom05" rows="3" name="comment" data-group="order.property"></textarea>
+                        </div>
+                        <input type="hidden" class="form-control" name="shipping_type_id" value="1" data-group="order">
+                        <input type="hidden" class="form-control" name="payment_method_id" value="1" data-group="order">
+                        <div class="col-12 d-flex justify-content-center">
+                            <button class="btn btn-primary checkout_submit" type="submit">{{ 'Enviar formulario'|_ }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12 d-none d-lg-block">
+                <div class="cart-summary">
+                    <p>THERE ARE {{ obCartPositionList.count() }} ARTÍCULOS IN YOUR CART</p>
+                    <hr>
+                    <div class="cart-wrapper">
+                        {% for obCartPosition in obCartPositionList %}
+                            {% set obOffer = obCartPosition.item %}
+                            {% set obProduct = obOffer.product %}
+                            <div class="row d-flex align-items-center g-3">
+                                <div class="col-3">
+                                    <img class="img-fluid" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                                </div>
+                                <div class="col-6">
+                                    <a class="label" href="{{ obProduct.getPageUrl('product') }}">
+                                        {{ obProduct.name }}
+                                    </a>
+                                </div>
+                                <div class="col-3">
+                                    <div class="price">{{ obOffer.price }} {{ obOffer.currency }}</div>
+                                    <div class="amount">x{{ obCartPosition.quantity }}</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="cart-summary-line">
+                        <div class="label">{{ 'Productos totales'|_ }}:</div>
+                        <div class="value">{{ obCartPositionList.getTotalPrice() }} {{ obCartPositionList.getCurrency() }}</div>
+                    </div>
+                    <div class="cart-summary-line">
+                        <div class="label">{{ 'Total Transporte'|_ }}:</div>
+                        <div class="value">Gratis</div>
+                    </div>
+                    <div class="cart-summary-line">
+                        <div class="label">{{ 'Impuestos incluidos'|_ }}:</div>
+                        <div class="value">0 €</div>
+                    </div>
+                    <hr>
+                    <div class="cart-summary-line">
+                        <div class="label"><b>{{ 'TOTAL'|_ }}</b> (impuestos inc.)</div>
+                        <div class="value"><b>{{ obCartPositionList.getTotalPrice() }} {{ obCartPositionList.getCurrency() }}</b></div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            {{ 'El carrito esta vacío'|_ }}
+            {% endif %}
+        </div>
+    </div>
+</div>
