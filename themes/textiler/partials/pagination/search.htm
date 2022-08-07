@@ -1,0 +1,14 @@
+{% set arPaginationList = Pagination.get(iPage, iCount) %}
+{% if arPaginationList|length > 1 %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center mt-4">
+        {% for arPagination in arPaginationList %}
+        <li class="page-item">
+            <a href="{{ url_current() }}?search={{ sSearch }}&page={{ arPagination.value }}" class="page-link {{ arPagination.class }}">
+                {{ arPagination.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}

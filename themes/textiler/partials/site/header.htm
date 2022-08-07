@@ -84,8 +84,10 @@
             </div>
             <div class="col-6">
                 <div class="search-wrapper">
-                    <input type="text" class="form-control" id="search-input2" placeholder="{{ 'Ingrese palabras clave de búsqueda'|_ }}">
-                    <button class="btn" type="button"><i class="fas fa-search" aria-hidden="true"></i></button>
+                    <form method="get" action="/search">
+                        <input type="text" name="search" class="form-control" id="search-input2" placeholder="{{ 'Ingrese palabras clave de búsqueda'|_ }}">
+                        <button class="btn" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+                    </form>
                 </div>
             </div>
             <div class="col-1 d-flex justify-content-center align-self-center">

@@ -1,0 +1,59 @@
+{# Get search string #}
+{% set sSearch = input('search') %}
+
+{# Get product collection #}
+{% set obProductList = ProductList.make().active().search(sSearch) %}
+
+{# Get array with pagination buttons #}
+{% set iPage = Pagination.getPageFromRequest() %}
+{% set iCount = obProductList.count() %}
+
+{# Apply pagination to product collection and get array with product items #}
+{% set arProductList = obProductList.page(iPage, Pagination.getCountPerPage()) %}
+
+<div class="container category my-5">
+    <h4 class="my-5">{{ 'Tu petición'|_ }}: {{ sSearch }}</h4>
+    {% if arProductList is not empty %}
+    {# Render product list #}
+    <div class="row grid my-4" id="grid-list">
+        {% for obProduct in arProductList %}
+        {% set obOffer = obProduct.offer.first() %}
+        <div class="column col-md-3 col-6">
+            <div class="item product-wrapper">
+                <div class="image">
+                    <a href="{{ obProduct.getPageUrl('product') }}">
+                        <img src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                    </a>
+                </div>
+                <div class="description">
+                    <div class="title">
+                        <a href="{{ obProduct.getPageUrl('product') }}">{{ obProduct.name }}</a>
+                    </div>
+                    <div class="info">
+                        <div class="star-content">
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                        </div>
+                        <div class="price">{{ obOffer.price }} {{ obOffer.currency }}</div>
+                        <div class="text">{{ obProduct.preview_text }}</div>
+                    </div>
+                    <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="button" class="btn btn-add-to-cart">
+                        <i class="in-cart-icon" aria-hidden="true"></i> {{ 'Añadir al carrito'|_ }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% partial 'pagination/search' iCount=iCount iPage=iPage sSearch=sSearch %}
+    {% else %}
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <h6 class="my-5">{{ 'No se encontró nada de acuerdo a su solicitud.'|_ }}</h6>
+    </div>
+    {% endif %}
+</div>

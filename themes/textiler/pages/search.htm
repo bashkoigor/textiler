@@ -1,0 +1,34 @@
+title = "Search"
+url = "/search"
+layout = "default"
+is_hidden = 0
+
+[ProductList]
+sorting = "price|asc|EUR"
+
+[Pagination]
+available_count_per_page = 12
+count_per_page = 12
+pagination_limit = 3
+active_class = "active"
+button_list = "first,prev,main,next,last"
+first_button_name = "<"
+first_button_limit = 3
+first-more_button_name = "..."
+first-more_button_limit = 1
+prev_button_name = "Anterior"
+prev_button_limit = 1
+prev-more_button_name = "..."
+prev-more_button_limit = 1
+next-more_button_name = "..."
+next-more_button_limit = 1
+next_button_name = "Próximo"
+next_button_limit = 1
+last-more_button_name = "..."
+last-more_button_limit = 1
+last_button_name = ">"
+last_button_limit = 3
+==
+<div class="search-wrapper">
+    {% partial 'search/list' %}
+</div>

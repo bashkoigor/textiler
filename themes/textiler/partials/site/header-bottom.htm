@@ -14,8 +14,10 @@
             </div>
             <div class="col-6 col-sm-5 col-md-5 col-lg-6 col-xl-7">
                 <div class="search-wrapper">
-                    <input type="text" class="form-control" id="search-input" placeholder="Ingrese palabras clave de búsqueda">
-                    <button class="btn" type="button"><i class="fas fa-search"></i></button>
+                    <form method="get" action="/search">
+                        <input type="text" name="search" class="form-control" id="search-input2" placeholder="{{ 'Ingrese palabras clave de búsqueda'|_ }}">
+                        <button class="btn" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+                    </form>
                 </div>
             </div>
             <div class="col-5 col-sm-5 col-md-4 col-lg-3 col-xl-2">
