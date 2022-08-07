@@ -163,7 +163,7 @@ function addOfferToCart(form, button, data) {
         'data': data,
         'update': {
             'cart/count': '.header-cart',
-            'cart/count': '.mobile-cart'
+            'cart/mobile-count': '.mobile-cart'
         },
     });
 }
