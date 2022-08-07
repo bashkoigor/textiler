@@ -2,4 +2,4 @@
 <a {% if obCartPositionList.count() > 0 %} href="{{ 'cart'|page }}" {% endif %} >
     <i class="shopping-cart-icon"></i>
 </a>
-<span class="cart-products-count">{{ obCartPositionList.count() }}</span>
+<span class="cart-products-count">{{ obCartPositionList.getTotalQuantity() }}</span>

@@ -15,8 +15,6 @@ redirect_on = 1
 redirect_page = "success"
 
 [ProductList]
-
-[Breadcrumbs]
 ==
 function onInit() {
     $obProduct = $this->ProductPage->get();
@@ -27,7 +25,7 @@ function onInit() {
     $obOffer        = $obProduct->offer->first();
     $obCategory     = $obProduct->category;
     $obMainCategory = $obCategory->parent->isNotEmpty() ? $obCategory->parent : '';
-    $this->Breadcrumbs->set($obProduct, $obCategory, $obMainCategory);
+    $this->Breadcrumbs->set($obProduct, $obCategory, $obMainCategory, null);
 
     $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
     $this['obPropertyList'] = $obProduct->property;

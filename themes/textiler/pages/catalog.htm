@@ -21,8 +21,6 @@ skip_error = 1
 [ProductList]
 sorting = "price|asc|EUR"
 
-[Breadcrumbs]
-
 [Pagination]
 available_count_per_page = 12
 count_per_page = 12
@@ -76,7 +74,7 @@ $this['item'] = ($iNextPageCount * $iPageFromRequest - $iNextPageCount) + 1;
 // TODO: Fix pagination
 
 $obMainCategory = $obCategory->parent->isNotEmpty() ? $obCategory->parent : '';
-$this->Breadcrumbs->set(null, $obCategory, $obMainCategory);
+$this->Breadcrumbs->set(null, $obCategory, $obMainCategory, null);
 $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
 
 }

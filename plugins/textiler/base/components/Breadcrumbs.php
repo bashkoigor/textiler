@@ -9,6 +9,7 @@ class Breadcrumbs extends ComponentBase
     protected $obProduct = null;
     protected $obCategory = null;
     protected $obMainCategory = null;
+    protected $obPage = null;
 
     public function componentDetails()
     {
@@ -18,11 +19,12 @@ class Breadcrumbs extends ComponentBase
         ];
     }
 
-    public function set($obProduct, $obCategory, $obMainCategory)
+    public function set($obProduct, $obCategory, $obMainCategory, $obPage)
     {
         $this->obProduct = $obProduct;
         $this->obCategory = $obCategory;
         $this->obMainCategory = $obMainCategory;
+        $this->obPage = $obPage;
     }
 
     /**
@@ -33,6 +35,13 @@ class Breadcrumbs extends ComponentBase
     {
         $arBreadcrumbs = [];
 
+        if (!empty($this->obPage)) {
+            $arBreadcrumbs[] = [
+                'name' => $this->obPage['title'],
+                'url' => $this->obPage['url'],
+            ];
+        }
+
         if (!empty($this->obProduct)) {
             $arBreadcrumbs[] = [
                 'name' => $this->obProduct->name,
@@ -40,10 +49,12 @@ class Breadcrumbs extends ComponentBase
             ];
         }
 
-        $arBreadcrumbs[] = [
-            'name' => $this->obCategory->name,
-            'url'  => $this->obCategory->getPageUrl('catalog'),
-        ];
+        if (!empty($this->obCategory)) {
+            $arBreadcrumbs[] = [
+                'name' => $this->obCategory->name,
+                'url' => $this->obCategory->getPageUrl('catalog'),
+            ];
+        }
 
         if (!empty($this->obMainCategory)) {
             $arBreadcrumbs[] = [

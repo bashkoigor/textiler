@@ -4,4 +4,117 @@ layout = "default"
 is_hidden = 0
 
 ==
-
+function onInit() {
+    $this->Breadcrumbs->set(null, null, null, $this->page->settings);
+    $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
+}
+==
+<div class="main">
+    {% partial 'breadcrumbs/breadcrumbs' %}
+    <div class="container cart">
+        <div class="row my-5">
+            <div class="col-lg-8 col-12">
+                <div class="cart-wrapper">
+                    <h6 class="mb-2 mb-md-4">CARRITO DE COMPRAS</h6>
+                    <div class="cart-title d-md-block d-none">
+                        <div class="row">
+                            <div class="col-5">Producto</div>
+                            <div class="col-2">Precio</div>
+                            <div class="col-2">Cantidad</div>
+                            <div class="col-2">Total</div>
+                            <div class="col-1"></div>
+                        </div>
+                    </div>
+                    <ul class="cart-items">
+                        <li class="cart-item">
+                            <div class="row align-items-center gx-3">
+                                <div class="col-4 col-md-2">
+                                    <img class="img-fluid" src="https://textiler.es/210-cart_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" alt="">
+                                </div>
+                                <div class="col-8 col-md-3">
+                                    <a class="label" href="https://textiler.es/maquinas-de-coser-bordar/1086-maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.html">
+                                        MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2
+                                    </a>
+                                </div>
+                                <div class="col-8 col-md-2">
+                                    <span class="d-inline-block d-md-none">Precio: </span>
+                                    <span class="price">13.990,00 €</span>
+                                </div>
+                                <div class="col-4 col-md-2 d-flex justify-content-md-start justify-content-end">
+                                    <div class="product-amount">
+                                        <button type="button" class="product-amount-decrease">-</button>
+                                        <input type="number" class="product-amount-number" name="quantity" value="1" min="1" max="9">
+                                        <button type="button" class="product-amount-increase">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <span class="d-inline-block d-md-none">Subtotal: </span>
+                                    <span class="total-price">27.980,00 €</span>
+                                </div>
+                                <div class="col-12 col-md-1 d-flex justify-content-md-start justify-content-end">
+                                    <i class="fa fa-trash-o remove" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cart-item">
+                            <div class="row align-items-center gx-3">
+                                <div class="col-4 col-md-2">
+                                    <img class="img-fluid" src="https://textiler.es/210-cart_default/maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.jpg" alt="">
+                                </div>
+                                <div class="col-8 col-md-3">
+                                    <a class="label" href="https://textiler.es/maquinas-de-coser-bordar/1086-maquina-de-coser-y-bordar-husqvarna-viking-designer-epic-2.html">
+                                        MAQUINA DE COSER Y BORDAR HUSQVARNA VIKING DESIGNER EPIC 2
+                                    </a>
+                                </div>
+                                <div class="col-8 col-md-2">
+                                    <span class="d-inline-block d-md-none">Precio: </span>
+                                    <span class="price">13.990,00 €</span>
+                                </div>
+                                <div class="col-4 col-md-2 d-flex justify-content-md-start justify-content-end">
+                                    <div class="product-amount">
+                                        <button type="button" class="product-amount-decrease">-</button>
+                                        <input type="number" class="product-amount-number" name="quantity" value="1" min="1" max="9">
+                                        <button type="button" class="product-amount-increase">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-2">
+                                    <span class="d-inline-block d-md-none">Subtotal: </span>
+                                    <span class="total-price">27.980,00 €</span>
+                                </div>
+                                <div class="col-12 col-md-1 d-flex justify-content-md-start justify-content-end">
+                                    <i class="fa fa-trash-o remove" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="cart-summary">
+                    <p>THERE ARE 2 ARTÍCULOS IN YOUR CART</p>
+                    <hr>
+                    <div class="cart-summary-line">
+                        <div class="label">Productos totales:</div>
+                        <div class="value">14.289,00 €</div>
+                    </div>
+                    <div class="cart-summary-line">
+                        <div class="label">Total Transporte:</div>
+                        <div class="value">Gratis</div>
+                    </div>
+                    <div class="cart-summary-line">
+                        <div class="label">Impuestos incluidos:</div>
+                        <div class="value">0 €</div>
+                    </div>
+                    <hr>
+                    <div class="cart-summary-line">
+                        <div class="label"><b>TOTAL</b> (impuestos inc.)</div>
+                        <div class="value"><b>14.289,00 €</b></div>
+                    </div>
+                    <div class="pt-4 pb-2">
+                        <a href="https://textiler.es/pedido" class="btn btn-primary">Pasar por la caja</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
