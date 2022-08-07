@@ -161,7 +161,10 @@ $(document).on('click', '.btn-add-to-cart', (e) => {
 function addOfferToCart(form, button, data) {
     $.request('Cart::onAdd', {
         'data': data,
-        'update': {'cart/count': '.header-cart'},
+        'update': {
+            'cart/count': '.header-cart',
+            'cart/count': '.mobile-cart'
+        },
     });
 }
 
