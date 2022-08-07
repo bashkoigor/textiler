@@ -1,0 +1,36 @@
+{% set obCartPositionList = Cart.get() %}
+{% for obCartPosition in obCartPositionList %}
+    {% set obOffer = obCartPosition.item %}
+    {% set obProduct = obOffer.product %}
+    <li class="cart-item" data-position-id="{{ obCartPosition.id }}">
+        <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+        <div class="row align-items-center gx-3">
+            <div class="col-4 col-md-2">
+                <img class="img-fluid" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+            </div>
+            <div class="col-8 col-md-3">
+                <a class="label" href="{{ obProduct.getPageUrl('product') }}">
+                    {{ obProduct.name }}
+                </a>
+            </div>
+            <div class="col-8 col-md-2">
+                <span class="d-inline-block d-md-none">{{ 'Precio'|_ }}: </span>
+                <span class="price">{{ obOffer.price }} {{ obOffer.currency }}</span>
+            </div>
+            <div class="col-4 col-md-2 d-flex justify-content-md-start justify-content-end">
+                <div class="product-amount">
+                    <button type="button" class="product-amount-decrease">-</button>
+                    <input type="number" class="product-amount-number" name="quantity" value="{{ obCartPosition.quantity }}" min="1" max="9">
+                    <button type="button" class="product-amount-increase">+</button>
+                </div>
+            </div>
+            <div class="col-12 col-md-2">
+                <span class="d-inline-block d-md-none">{{ 'Subtotal'|_ }}: </span>
+                <span class="total-price">{{ obCartPosition.price_without_tax }} {{ obOffer.currency }}</span>
+            </div>
+            <div class="col-12 col-md-1 d-flex justify-content-md-start justify-content-end">
+                <i class="fa fa-trash-o remove" aria-hidden="true"></i>
+            </div>
+        </div>
+    </li>
+{% endfor %}

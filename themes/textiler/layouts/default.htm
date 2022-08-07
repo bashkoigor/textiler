@@ -19,12 +19,6 @@ function onInit() {
     \Lovata\Shopaholic\Classes\Helper\PriceTypeHelper::instance()->switchActive($arCurrency[$currentLocale]);
     \Lovata\Shopaholic\Classes\Helper\CurrencyHelper::instance()->switchActive($arCurrency[$currentLocale]);
 
-    $obCategoryList = $this->CategoryList->make()->tree();
-    //echo "<pre>";
-    foreach ($obCategoryList as $id => $value) {
-        //var_dump($value->children);
-    }
-    //echo "</pre>";
 }
 ==
 <!doctype html>

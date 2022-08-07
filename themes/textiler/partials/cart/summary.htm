@@ -1,0 +1,23 @@
+{% set obCartPositionList = Cart.get() %}
+<p>THERE ARE {{ obCartPositionList.count() }} ARTÍCULOS IN YOUR CART</p>
+<hr>
+<div class="cart-summary-line">
+    <div class="label">{{ 'Productos totales'|_ }}:</div>
+    <div class="value">{{ obCartPositionList.getTotalPrice() }} {{ obCartPositionList.getCurrency() }}</div>
+</div>
+<div class="cart-summary-line">
+    <div class="label">{{ 'Total Transporte'|_ }}:</div>
+    <div class="value">{{ 'Gratis'|_ }}</div>
+</div>
+<div class="cart-summary-line">
+    <div class="label">{{ 'Impuestos incluidos'|_ }}:</div>
+    <div class="value">0 €</div>
+</div>
+<hr>
+<div class="cart-summary-line">
+    <div class="label"><b>{{ 'TOTAL'|_ }}</b> (impuestos inc.)</div>
+    <div class="value"><b>{{ obCartPositionList.getTotalPrice() }} {{ obCartPositionList.getCurrency() }}</b></div>
+</div>
+<div class="pt-4 pb-2">
+    <a href="{{ 'checkout'|page }}" class="btn btn-primary">{{ 'Pasar por la caja'|_ }}</a>
+</div>

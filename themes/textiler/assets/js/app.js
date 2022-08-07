@@ -1,6 +1,9 @@
+// Open category menu
 $(document).on('click', '.vertical-menu', (e) => {
     $( e.currentTarget ).find(".menu").toggleClass("show-menu");
 });
+
+// Catalog sort
 $(document).on({
     mouseenter: function () {
         if ($( this ).find(".dropdown-menu ul").length) {
@@ -95,14 +98,14 @@ $("#grid-view").click(function(){
 });
 
 // Decrease, increase product amount
-$(".product-amount-increase").click(function() {
-    let x = $(this).siblings(".product-amount input").val();
-    $(this).siblings(".product-amount input").attr('value', ++x);
+$(document).on('click', '.product-amount-increase', (e) => {
+    let x = $( e.currentTarget ).siblings(".product-amount input").val();
+    $( e.currentTarget ).siblings(".product-amount input").attr('value', ++x);
 });
-$(".product-amount-decrease").click(function() {
-    let x = $(this).siblings(".product-amount input").val();
+$(document).on('click', '.product-amount-decrease', (e) => {
+    let x = $( e.currentTarget ).siblings(".product-amount input").val();
     if (x > 1) {
-        $(this).siblings(".product-amount input").attr('value', --x);
+        $( e.currentTarget ).siblings(".product-amount input").attr('value', --x);
     }
 });
 
