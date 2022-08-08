@@ -1,0 +1,9 @@
+{% if obProduct.inWishList() %}
+    <span>
+        <i class="far fa-heart"></i> {{ 'Producto añadido a la lista de deseos'|_ }}
+    </span>
+{% else %}
+    <span class="add-to-wish-list">
+        <i class="far fa-heart"></i> {{ 'Añadir a la lista de deseos'|_ }}
+    </span>
+{% endif %}

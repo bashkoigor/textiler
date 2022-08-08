@@ -167,6 +167,38 @@ function addOfferToCart(form, button, data) {
     });
 }
 
+// Event add product to wish list
+$(document).on('click', '.add-to-wish-list', (e) => {
+    const button = $(e.currentTarget),
+        form = button.parents('.product-wrapper');
+    let id = form.find('input[name="product_id"]').val();
+    addToWishList(id);
+});
+
+// Event remove product from wish list
+$(document).on('click', '.remove-from-wish-list', (e) => {
+    const button = $(e.currentTarget),
+        form = button.parents('.product-wrapper');
+    let id = form.find('input[name="product_id"]').val();
+    removeFromWishList(id);
+});
+
+// Add to wish list
+function addToWishList(id) {
+    $.request('ProductData::onAddToWishList', {
+        data: {'product_id': id},
+        update: {'wishlist/button': '.wish-list'}
+    });
+}
+
+// Remove from wish list
+function removeFromWishList(id) {
+    $.request('ProductData::onRemoveFromWishList', {
+        data: {'product_id': id},
+        update: {'wishlist/list': '.wish-list-wrapper'}
+    });
+}
+
 // Modal menu by Ajax, show categorys.
 $.request('onAjax', {
     update: {

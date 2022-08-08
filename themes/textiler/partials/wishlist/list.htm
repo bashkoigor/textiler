@@ -1,0 +1,59 @@
+{% set arProductList = ProductList.make().active().wishList() %}
+<div class="row my-5">
+    <div class="col-12">
+        {% if arProductList is not empty %}
+        <div class="cart-wrapper">
+            <h6 class="mb-2 mb-md-4">LISTA DE DESEOS</h6>
+            <div class="cart-title d-md-block d-none">
+                <div class="row">
+                    <div class="col-6">Producto</div>
+                    <div class="col-1">Precio</div>
+                    <div class="col-1">Cantidad</div>
+                    <div class="col-1"></div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <ul class="cart-items">
+                {% for obProduct in arProductList %}
+                {% set obOffer = obProduct.offer.first() %}
+                <li class="cart-item product-wrapper">
+                    <div class="row align-items-center gx-3">
+                        <div class="col-4 col-md-2">
+                            <img class="img-fluid" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                        </div>
+                        <div class="col-8 col-md-4">
+                            <a class="label" href="{{ obProduct.getPageUrl('product') }}">
+                                {{ obProduct.name }}
+                            </a>
+                        </div>
+                        <div class="col-8 col-md-1">
+                            <span class="d-inline-block d-md-none">Precio: </span>
+                            <span class="price">{{ obOffer.price }} {{ obOffer.currency }}</span>
+                        </div>
+                        <div class="col-4 col-md-2 d-flex justify-content-md-start justify-content-end">
+                            <div class="product-amount">
+                                <button type="button" class="product-amount-decrease">-</button>
+                                <input type="number" class="product-amount-number" name="quantity" value="1" min="1" max="9">
+                                <button type="button" class="product-amount-increase">+</button>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-2 mt-3 mt-md-0">
+                            <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+                            <input type="hidden" name="product_id" value="{{ obProduct.id }}">
+                            <button type="button" class="btn btn-add-to-cart m-0">
+                                <i class="in-cart-icon" aria-hidden="true"></i> Añadir al carrito
+                            </button>
+                        </div>
+                        <div class="col-6 col-md-1 d-flex justify-content-end mt-3 mt-md-0">
+                            <i class="fa fa-trash-o remove remove-from-wish-list" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        {{ 'No has seleccionado ningún producto'|_ }}
+        {% endif %}
+    </div>
+</div>

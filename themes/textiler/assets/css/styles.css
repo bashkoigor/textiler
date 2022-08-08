@@ -774,6 +774,9 @@
 .login form .input-group-text {background-color: white;}
 .login form .input-group-text.custom {cursor: pointer; border-left: none;}
 .login form #field-password, .login form #field-confirm-password  {border-right: none;}
+
+.wish-list .add-to-wish-list {cursor: pointer; color: #666;}
+.wish-list .add-to-wish-list:hover {color: #e72627;}
 /* Custom container size, 1240px */
 @media (min-width: 1200px) {
     .container{
