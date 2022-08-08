@@ -1,0 +1,12 @@
+{% set obUser = UserData.get %}
+{% set activeNavLink = activeNavLink|default(this.page.id) %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link {{ activeNavLink == 'user-orders' ? 'active' }}" href="{{ 'user/orders'|page }}">{{ 'Mis ordenes'|_ }}</a>
+                <a class="nav-link {{ activeNavLink == 'user-user' ? 'active' }}" href="{{ 'user/user'|page({ slug: obUser.id }) }}">{{ 'Mi perfil'|_ }}</a>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -4,21 +4,21 @@ description = "Default layout"
 [CategoryList]
 [SiteSettings]
 [Breadcrumbs]
+[UserData]
 ==
 function onInit() {
-
     /* Set currency by locale */
-
     $arCurrency = [
-    "ru" => "RUB",
-    "en" => "USD",
-    "es" => "EUR",
+        "ru" => "RUB",
+        "en" => "USD",
+        "es" => "EUR",
     ];
-
     $currentLocale = \RainLab\Translate\Classes\Translator::instance()->getLocale();
     \Lovata\Shopaholic\Classes\Helper\PriceTypeHelper::instance()->switchActive($arCurrency[$currentLocale]);
     \Lovata\Shopaholic\Classes\Helper\CurrencyHelper::instance()->switchActive($arCurrency[$currentLocale]);
 
+    /* User data */
+    $this['obUser'] = $this->UserData->get();
 }
 ==
 <!doctype html>

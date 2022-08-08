@@ -27,8 +27,29 @@
                             <i class="account-icon"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdown2">
+                            {% if obUser.isNotEmpty %}
                             <li>
-                                <a class="login" href="" rel="nofollow"
+                                <a class="login {{ activeNavLink == 'user-orders' ? 'active' }}" href="{{ 'user/orders'|page }}" rel="nofollow"
+                                   title="Log in to your customer account">
+                                    <i class="fas fa-file-alt"></i>
+                                    {{ 'Área personal'|_ }}
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="login" href="{{ 'user/logout'|page }}" rel="nofollow">
+                                    <i class="fa fa-sign-in"></i>
+                                    {{ 'Salir'|_ }}
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            {% else %}
+                            <li>
+                                <a class="login" href="{{ 'user/login'|page }}" rel="nofollow"
                                    title="Log in to your customer account">
                                     <i class="fa fa-sign-in"></i>
                                     <span>{{ 'Entrar'|_ }}</span>
@@ -38,7 +59,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <a class="register" href=""
+                                <a class="register" href="{{ 'user/registration'|page }}"
                                    rel="nofollow" title="{{ 'Registrarse'|_ }}">
                                     <i class="fa fa-user"></i>
                                     <span>{{ 'Registrarse'|_ }}</span>
@@ -47,6 +68,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            {% endif %}
                             <li>
                                 <a class="check-out" href="{{ 'checkout'|page }}" rel="nofollow"
                                    title="{{ 'Checkout'|_ }}">
