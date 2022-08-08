@@ -1,29 +1,42 @@
 <div class="footer-mobile">
     <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="staticBackdropLabel">Ajuste</h5>
+            <h5 class="offcanvas-title" id="staticBackdropLabel">{{ 'Ajuste'|_ }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <ul>
+                {% if obUser.isNotEmpty %}
                 <li>
-                    <a class="login" href="https://textiler.es/mi-cuenta" rel="nofollow" title="Log in to your customer account">
-                        <span>Entrar</span>
+                    <a class="login {{ activeNavLink == 'user-orders' ? 'active' }}" href="{{ 'user/orders'|page }}" rel="nofollow">
+                        {{ 'Área personal'|_ }}
                     </a>
                 </li>
                 <li>
-                    <a class="register" href="https://textiler.es/iniciar-sesion?create_account=1" rel="nofollow" title="Registrarse">
-                        <span>Registrarse</span>
+                    <a class="login" href="{{ 'user/logout'|page }}" rel="nofollow">
+                        {{ 'Salir'|_ }}
+                    </a>
+                </li>
+                {% else %}
+                <li>
+                    <a class="login" href="{{ 'user/login'|page }}" rel="nofollow">
+                        <span>{{ 'Entrar'|_ }}</span>
                     </a>
                 </li>
                 <li>
-                    <a class="check-out" href="https://textiler.es/pedido" rel="nofollow" title="Checkout">
-                        <span>Checkout</span>
+                    <a class="register" href="{{ 'user/registration'|page }}" rel="nofollow">
+                        <span>{{ 'Registrarse'|_ }}</span>
+                    </a>
+                </li>
+                {% endif %}
+                <li>
+                    <a class="check-out" href="{{ 'checkout'|page }}" rel="nofollow">
+                        <span>{{ 'Checkout'|_ }}</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://textiler.es/module/novblockwishlist/mywishlist" title="Mi lista de deseos">
-                        <span>Mi lista de deseos</span>
+                    <a href="{{ 'wishlist'|page }}">
+                        <span>{{ 'Mi lista de deseos'|_ }}</span>
                     </a>
                 </li>
             </ul>
@@ -32,7 +45,7 @@
     <div class="container-fluid fixed-bottom d-block d-md-none menu">
         <ul class="nav nav-pills justify-content-center p-2">
             <li>
-                <a href="https://textiler.es/module/novblockwishlist/mywishlist" title="Mi lista de deseos">
+                <a href="{{ 'wishlist'|page }}">
                     <i class="wishlist-icon"></i>
                 </a>
             </li>

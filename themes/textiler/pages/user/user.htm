@@ -13,8 +13,9 @@ login_page = "user/login"
 ==
 <div class="container">
     <div class="row">
+        <div class="col-12">
         {% partial 'user/menu' %}
-        <form class="row g-3 my-5" href="{{ 'user'|page }}" style="width: 500px">
+        <form class="row g-3 my-5" href="{{ 'user'|page }}">
             <div class="col-12">
                 <label for="field-email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="field-email" name="email" value="{{ obUser.email }}">
@@ -35,6 +36,7 @@ login_page = "user/login"
                 <button class="btn btn-primary" type="submit">{{ 'Guardar cambios'|_ }}</button>
             </div>
         </form>
+        </div>
     </div>
 </div>
 

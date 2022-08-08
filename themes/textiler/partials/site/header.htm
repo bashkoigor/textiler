@@ -29,8 +29,7 @@
                         <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdown2">
                             {% if obUser.isNotEmpty %}
                             <li>
-                                <a class="login {{ activeNavLink == 'user-orders' ? 'active' }}" href="{{ 'user/orders'|page }}" rel="nofollow"
-                                   title="Log in to your customer account">
+                                <a class="login {{ activeNavLink == 'user-orders' ? 'active' }}" href="{{ 'user/orders'|page }}" rel="nofollow">
                                     <i class="fas fa-file-alt"></i>
                                     {{ 'Área personal'|_ }}
                                 </a>
