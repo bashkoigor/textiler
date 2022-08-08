@@ -162,8 +162,7 @@ function addOfferToCart(form, button, data) {
     $.request('Cart::onAdd', {
         'data': data,
         'update': {
-            'cart/count': '.header-cart',
-            'cart/mobile-count': '.mobile-cart'
+            'cart/count': '.header-cart, .mobile-cart',
         },
     });
 }
