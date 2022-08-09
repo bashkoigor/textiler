@@ -777,6 +777,17 @@
 
 .wish-list .add-to-wish-list {cursor: pointer; color: #666;}
 .wish-list .add-to-wish-list:hover {color: #e72627;}
+
+.field-color-picker {list-style-type: none; display: flex; padding: 0;}
+.field-color-picker li {margin-right: 10px;}
+.field-color-picker li span {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 100%;
+    cursor: pointer;
+}
 /* Custom container size, 1240px */
 @media (min-width: 1200px) {
     .container{

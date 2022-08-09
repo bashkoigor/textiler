@@ -1,0 +1,113 @@
+<input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+<input type="hidden" name="product_id" value="{{ obProduct.id }}">
+<div class="row my-5">
+    <div class="col-md-5 col-12">
+        <div class="gallery">
+            <div id="product-carousel" class="carousel">
+                {% if obOffer.images is not empty %}
+                    {% for obImage in obOffer.images %}
+                    <div class="carousel__slide" data-src="{{ obImage.getPath() }}" data-fancybox="product-gallery">
+                        <img src="{{ obImage.getPath() }}" alt="{{ obImage.description }}" title="{{ obImage.title }}" />
+                    </div>
+                    {% endfor %}
+                {% elseif obProduct.images is not empty %}
+                    {% for obImage in obProduct.images %}
+                    <div class="carousel__slide" data-src="{{ obImage.getPath() }}" data-fancybox="product-gallery">
+                        <img src="{{ obImage.getPath() }}" alt="{{ obImage.description }}" title="{{ obImage.title }}" />
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div id="product-thumb-carousel" class="carousel max-w-xl mx-auto">
+                {% if obOffer.images is not empty %}
+                    {% for obImage in obOffer.images %}
+                    <div class="carousel__slide">
+                        <img class="panzoom__content" src="{{ obImage.getPath() }}" />
+                    </div>
+                    {% endfor %}
+                {% elseif obProduct.images is not empty %}
+                    {% for obImage in obProduct.images %}
+                    <div class="carousel__slide">
+                        <img class="panzoom__content" src="{{ obImage.getPath() }}" />
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7 col-12 mt-4 mt-md-0">
+        <h5>{{ obProduct.name }}</h5>
+        <div class="price mt-4">
+            <span>{{ obOffer.price }} {{ obOffer.currency }}</span>
+        </div>
+        <div class="description mt-4">
+            <p>{{ obProduct.preview_text }}</p>
+        </div>
+        <div class="comment mt-4">
+            <b>CLASIFICACIÓN:</b>
+            <div class="star-content">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+            </div>
+            <span>0 COMENTARIOS</span>
+        </div>
+        <div class="wish-list mt-4">
+            {% partial 'wishlist/button' %}
+        </div>
+        <div class="offers mt-4">
+            {% partial 'product/offer-properties' %}
+        </div>
+        <div class="button mt-5">
+            <div class="product-amount">
+                <button type="button" class="product-amount-decrease">-</button>
+                <input type="number" class="product-amount-number" name="quantity" value="1" min="1" max="9">
+                <button type="button" class="product-amount-increase">+</button>
+            </div>
+            <button type="button" class="btn btn-add-to-cart">
+                <i class="in-cart-icon" aria-hidden="true"></i> Comprar
+            </button>
+        </div>
+    </div>
+    <div class="col-12 mt-5">
+        <ul class="nav nav-tabs" id="productTabLink" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#description-tab-pane" type="button" role="tab" aria-controls="description-tab-pane" aria-selected="true">
+                    Descripción
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#properties-tab-pane" type="button" role="tab" aria-controls="properties-tab-pane" aria-selected="false">
+                    Detalles de producto
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">
+                    Escribir un comentario <span>(0)</span>
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content py-4" id="productTab">
+            <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                {{ obProduct.description }}
+            </div>
+            <div class="tab-pane fade" id="properties-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                {% if obPropertyList.isNotEmpty() %}
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                    {% for obProperty in obPropertyList if obProperty.hasValue() %}
+                    <tr>
+                        <th scope="row">{{ obProperty.name }}:</th>
+                        <td>{{ obProperty.property_value.getValueString() }} {{ obProperty.measure.name }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+            <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0"></div>
+        </div>
+    </div>
+</div>
