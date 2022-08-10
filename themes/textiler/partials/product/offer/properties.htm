@@ -1,0 +1,6 @@
+{% for arOfferProperty in arOfferProperties %}
+    {% if arOfferProperty['data'] is not empty %}
+        {% partial 'product/offer/type/'~arOfferProperty['type'] arOfferProperty=arOfferProperty %}
+    {% endif %}
+{% endfor %}
+

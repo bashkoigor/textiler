@@ -16,6 +16,7 @@ redirect_page = "success"
 
 [ProductList]
 [ProductData]
+[OfferProperties]
 ==
 function onInit() {
 
@@ -31,6 +32,8 @@ function onInit() {
     } else {
         $obOffer = $obProduct->offer->find($offerId);
     }
+    $arPropertyCode = array('color', 'version');
+    $arOfferProperties = $this->OfferProperties->getOfferProperties($obProduct, $arPropertyCode);
 
     $obCategory = $obProduct->category;
     $obMainCategory = $obCategory->parent->isNotEmpty() ? $obCategory->parent : '';
@@ -40,8 +43,15 @@ function onInit() {
     $this['obPropertyList'] = $obProduct->property;
     $this['obProduct'] = $obProduct;
     $this['obOffer'] = $obOffer;
+    $this['arOfferProperties'] = $arOfferProperties;
 
     $this->addJs('assets/js/product.js');
+
+    //$test = $obOffer->property->getByCode('version')->hasValue();
+    //$test = $obOffer->property->code('version');
+    //echo "<pre>";
+    //var_dump($test);
+    //echo "</pre>";
 }
 ==
 {% put pageTitle %}

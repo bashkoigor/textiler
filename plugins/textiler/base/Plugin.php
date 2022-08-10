@@ -25,6 +25,7 @@ class Plugin extends PluginBase
         return [
             '\Textiler\Base\Components\Breadcrumbs'     => 'Breadcrumbs',
             '\Textiler\Base\Components\SiteSettings'    => 'SiteSettings',
+            '\Textiler\Base\Components\OfferProperties' => 'OfferProperties',
         ];
     }
 

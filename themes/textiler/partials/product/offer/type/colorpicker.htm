@@ -1,0 +1,6 @@
+<ul class="field-color-picker">
+    <li>{{ arOfferProperty['name'] }}: </li>
+    {% for offerId, sPropertyValue in arOfferProperty['data'] %}
+    <li><span style="background: {{ sPropertyValue }}" data-offerid="{{ offerId }}"></span></li>
+    {% endfor %}
+</ul>
