@@ -5,9 +5,15 @@ $.request('Cart::onGetCartData', {
     }
 });
 
-// Event set offer id
+// Event set offer id for color picker
 $(document).on('click', '.field-color-picker li span', (e) => {
     let offerId = $(e.currentTarget).data("offerid");
+    setOffer(offerId);
+});
+
+// Event set offer id for select
+$(document).on('change', '.field-select', (e) => {
+    let offerId = $(e.currentTarget).val();
     setOffer(offerId);
 });
 
@@ -19,6 +25,9 @@ function setOffer(offerId) {
             'product/card': '.product-wrapper'
         }
     });
+    setTimeout(function(){
+        productCarousel();
+    }, 300);
 }
 
 

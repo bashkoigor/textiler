@@ -1,6 +1,8 @@
-{{ arOfferProperty['name'] }}:
-<select class="form-select form-select-sm field-select">
-    {% for offerId, sPropertyValue in arOfferProperty['data'] %}
-    <option value="{{ offerId }}" {% if offerId == obOffer.id %}selected{% endif %}>{{ sPropertyValue }}-{{obOffer.id}}</option>
-    {% endfor %}
-</select>
+<div class="select-wrapper">
+    <label>{{ arOfferProperty['name'] }}: </label>
+    <select class="form-select form-select-sm field-select">
+        {% for offerId, sPropertyValue in arOfferProperty['data'] %}
+        <option value="{{ offerId }}" {% if offerId == obOffer.id %}selected{% endif %}>{{ sPropertyValue }}</option>
+        {% endfor %}
+    </select>
+</div>

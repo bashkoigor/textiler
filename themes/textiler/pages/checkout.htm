@@ -77,7 +77,11 @@ function onInit() {
                             {% set obProduct = obOffer.product %}
                             <div class="row d-flex align-items-center g-3">
                                 <div class="col-3">
+                                    {% if obOffer.preview_image is not empty %}
+                                    <img class="img-fluid" src="{{ obOffer.preview_image.path }}" alt="{{ obOffer.preview_image.description }}" title="{{ obOffer.preview_image.title }}">
+                                    {% elseif obProduct.preview_image is not empty %}
                                     <img class="img-fluid" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                                    {% endif %}
                                 </div>
                                 <div class="col-6">
                                     <a class="label" href="{{ obProduct.getPageUrl('product') }}">

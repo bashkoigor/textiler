@@ -6,7 +6,11 @@
         <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
         <div class="row align-items-center gx-3">
             <div class="col-4 col-md-2">
-                <img class="img-fluid" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                {% if obOffer.preview_image is not empty %}
+                    <img class="img-fluid" src="{{ obOffer.preview_image.path }}" alt="{{ obOffer.preview_image.description }}" title="{{ obOffer.preview_image.title }}">
+                {% elseif obProduct.preview_image is not empty %}
+                    <img class="img-fluid" src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                {% endif %}
             </div>
             <div class="col-8 col-md-3">
                 <a class="label" href="{{ obProduct.getPageUrl('product') }}">
