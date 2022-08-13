@@ -17,7 +17,7 @@
                 {% for obChildCategory in obParentCategory.children %}
                 <li class="item">
                     <a href="{{ obChildCategory.getPageUrl('catalog') }}" title="{{ obChildCategory.name }}">
-                        <img src="https://textiler.es/themes/vinova_nuranium/assets/img/modules/novverticalmenu/icon/maquinasdecoser123textiler.png" alt="">
+                        <img src="{{ 'temp.png'|media }}" alt="">
                         {{ obChildCategory.name }}
                     </a>
                 </li>
