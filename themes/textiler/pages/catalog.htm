@@ -1,4 +1,4 @@
-title = "Каталог"
+title = "Catalog"
 layout = "default"
 
 url = "/catalog/:category*/:slug?"
@@ -20,6 +20,9 @@ skip_error = 1
 
 [ProductList]
 sorting = "price|asc|EUR"
+
+[FilterPanel]
+[Catalog]
 
 [Pagination]
 available_count_per_page = 12
@@ -49,6 +52,7 @@ $obMainCategoryItem = $this->MainCategoryPage->get();
 $obCategoryItem = $this->CategoryPage->get();
 $iPage = $this->Pagination->getPageFromRequest();
 $sActiveSort = $this->ProductList->getSorting();
+
 if (empty($obCategoryItem)) {
 $obCategory = $obMainCategoryItem;
 $obProductList = $this->ProductList->make()->active()->sort($sActiveSort)->category($obMainCategoryItem->id, true);
@@ -57,16 +61,25 @@ $obCategory = $obCategoryItem;
 $obProductList = $this->ProductList->make()->active()->sort($sActiveSort)->category($obCategoryItem->id, true);
 }
 
-$arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
-$iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
-$iNextPageCount = $this->Pagination->getCountForNextPage($iPage, $obProductList->count());
+//$obFilterProductPropertyList = $obCategory->product_filter_property;
+//$obFilterProductPropertyList = $this->FilterPanel->getProductPropertyList(['obshchie-svojstva'], $obProductList);
+$obFilterProductPropertyList = $obCategory->product_filter_property->setCategory(null)->setProductList($obProductList);
+$arFilterPropertyList = $this->Catalog->getFilterPropertyList();
+$obFilterProductList = $this->Catalog->getFilterProductPropertyList($obProductList, $obCategory);
+
+$arProductList = $obFilterProductList->page($iPage, $this->Pagination->getCountPerPage());
+$iCount = $obFilterProductList->count();
+$iMaxPage = $this->Pagination->getMaxPage($iCount);
+$iNextPageCount = $this->Pagination->getCountForNextPage($iPage, $iCount);
 $iPageFromRequest = $this->Pagination->getPageFromRequest();
 
+$this['arFilterPropertyList'] = $arFilterPropertyList;
 $this['obCategory'] = $obCategory;
 $this['arProductList'] = $arProductList;
+$this['obFilterProductPropertyList'] = $obFilterProductPropertyList;
 $this['iPage'] = $iPage;
 $this['iMaxPage'] = $iMaxPage;
-$this['iCount'] = $obProductList->count();
+$this['iCount'] = $iCount;
 $this['sActiveSort'] = $sActiveSort;
 $this['iNextPageCount'] = $iNextPageCount;
 $this['itemFrom'] = $iNextPageCount * $iPageFromRequest;
@@ -77,6 +90,7 @@ $obMainCategory = $obCategory->parent->isNotEmpty() ? $obCategory->parent : '';
 $this->Breadcrumbs->set(null, $obCategory, $obMainCategory, null);
 $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
 
+$this->addJs('assets/js/filter.js');
 }
 ==
 {% put pageTitle %}

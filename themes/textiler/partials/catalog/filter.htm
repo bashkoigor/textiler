@@ -1,0 +1,28 @@
+{% set obGroupList = obFilterProductPropertyList.groupList() %}
+{% set obMainGroup = obGroupList.getByCode('svojstva-tovara') %}
+{% set obMainFilterPropertyList = obFilterProductPropertyList.group(obMainGroup.id) %}
+
+<div class="container my-5">
+    <div class="row row-cols-1">
+        {% if obMainFilterPropertyList.isNotEmpty %}
+        {% for obProperty in obMainFilterPropertyList if obProperty.hasValue() %}
+        <div class="col _shopaholic-filter-wrapper" data-test="{{obProperty.filter_type}}" data-filter-type="checkbox" data-property-id="{{obProperty.id}}">
+            {{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}, {{ obProperty.measure.name }}{% endif %}
+            <ul class="mt-3">
+                {% set obPropertyValueList = obProperty.property_value.sort() %}
+                {% for obPropertyValue in obPropertyValueList %}
+                {% set bChecked = arFilterPropertyList[obProperty.id] is not empty and obPropertyValue.slug in arFilterPropertyList[obProperty.id] %}
+                <li>
+                    <input class="form-check-input" id="{{obPropertyValue.id}}" type="checkbox" value="{{ obPropertyValue.slug }}" {% if bChecked %}checked{% endif %} >
+                    <label class="form-check-label" for="{{obPropertyValue.id}}">{{ obPropertyValue.value }}</label>
+                </li>
+                {% endfor %}
+            </ul>
+            <hr>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+
