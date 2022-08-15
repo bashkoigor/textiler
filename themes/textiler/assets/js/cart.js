@@ -34,7 +34,7 @@ $(document).on('click', '.product-amount-increase, .product-amount-decrease', (e
         'update': {
             'cart/list': '.cart-items',
             'cart/summary': '.cart-summary',
-            'cart/count': '.header-cart'
+            'cart/count': '.header-cart, .mobile-cart'
         },
     });
 });
