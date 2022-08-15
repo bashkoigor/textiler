@@ -27,7 +27,7 @@ function setOffer(offerId) {
     });
     setTimeout(function(){
         productCarousel();
-    }, 300);
+    }, 500);
 }
 
 
