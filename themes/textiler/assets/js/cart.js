@@ -12,7 +12,7 @@ $(document).on('click', '.remove', (e) => {
         'update': {
             'cart/list': '.cart-items',
             'cart/summary': '.cart-summary',
-            'cart/count': '.header-cart'
+            'cart/count': '.header-cart, .mobile-cart'
         },
     });
 });
