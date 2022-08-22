@@ -1,8 +1,8 @@
 <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
 <input type="hidden" name="product_id" value="{{ obProduct.id }}">
 <div class="row my-5">
-    <div class="col-md-5 col-12">
-        <div class="gallery" id="product-gallery">
+    <div class="col-md-5 col-12 d-flex align-items-center justify-content-center">
+        <div class="gallery invisible-block" id="product-gallery">
             <div id="product-carousel" class="carousel">
                 {% if obOffer.images is not empty %}
                     {% for obImage in obOffer.images %}

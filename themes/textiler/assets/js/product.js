@@ -5,6 +5,34 @@ $.request('Cart::onGetCartData', {
     }
 });
 
+// For product page
+productCarousel();
+function productCarousel() {
+    if (document.querySelector(".product")) {
+        // Product Carousel
+        const productCarousel = new Carousel(document.querySelector("#product-carousel"), {
+            Dots: false,
+        });
+        const thumbCarousel = new Carousel(document.querySelector("#product-thumb-carousel"), {
+            Sync: {
+                target: productCarousel,
+                friction: 0,
+            },
+            Dots: false,
+            Navigation: false,
+            center: true,
+            slidesPerPage: 1,
+            infinite: false,
+        });
+    }
+}
+
+// Show gallery
+window.onload = function (e) {
+    document.getElementById("product-gallery").classList.remove('invisible-block');
+    document.getElementById("product-gallery").classList.add('visible-block');
+}
+
 // Event set offer id for color picker
 $(document).on('click', '.field-color-picker li span', (e) => {
     let offerId = $(e.currentTarget).data("offerid");
@@ -27,6 +55,8 @@ function setOffer(offerId) {
     });
     setTimeout(function(){
         productCarousel();
+        document.getElementById("product-gallery").classList.remove('invisible-block');
+        document.getElementById("product-gallery").classList.add('visible-block');
     }, 500);
 }
 

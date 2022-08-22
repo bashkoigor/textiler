@@ -64,29 +64,6 @@ function scrollToTop() {
     });
 }
 
-// For product page
-productCarousel();
-function productCarousel() {
-    if (document.querySelector(".product")) {
-        // Product Carousel
-        const productCarousel = new Carousel(document.querySelector("#product-carousel"), {
-            Dots: false,
-        });
-        const thumbCarousel = new Carousel(document.querySelector("#product-thumb-carousel"), {
-            Sync: {
-                target: productCarousel,
-                friction: 0,
-            },
-            Dots: false,
-            Navigation: false,
-            center: true,
-            slidesPerPage: 1,
-            infinite: false,
-        });
-    }
-}
-
-
 // Catalog List Grid view switcher
 $("#list-view").click(function(){
     $("#grid-view").removeClass("active");
