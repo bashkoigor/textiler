@@ -796,6 +796,7 @@
 ._shopaholic-filter-wrapper hr {color: #909090;}
 .invisible-block {visibility: hidden; opacity: 0;}
 .visible-block {visibility: visible; opacity: 1; transition: visibility 0.5s, opacity 0.5s linear;}
+/*#product-gallery {max-height: 611px;}*/
 /* Custom container size, 1240px */
 @media (min-width: 1200px) {
     .container{

@@ -57,7 +57,7 @@ function setOffer(offerId) {
         productCarousel();
         document.getElementById("product-gallery").classList.remove('invisible-block');
         document.getElementById("product-gallery").classList.add('visible-block');
-    }, 500);
+    }, 1000);
 }
 
 
