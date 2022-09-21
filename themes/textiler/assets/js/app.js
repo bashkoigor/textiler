@@ -1,3 +1,9 @@
+// Open review modal form
+$(document).on('click', '#btn-review', (e) => {
+    e.preventDefault()
+    $('#reviewForm').modal('show');
+});
+
 // Open category menu
 $(document).on('click', '.vertical-menu', (e) => {
     $( e.currentTarget ).find(".menu").toggleClass("show-menu");

@@ -1,6 +1,6 @@
-title = "Product"
 url = "/product/:slug"
 layout = "default"
+title = "Product"
 is_hidden = 0
 
 [ProductPage]
@@ -15,9 +15,16 @@ redirect_on = 1
 redirect_page = "success"
 
 [ProductList]
+sorting = "no"
+
 [ProductData]
+
 [OfferProperties]
+
+[Reviews]
+status = 1
 ==
+<?php
 function onInit() {
 
     $obProduct = $this->ProductPage->get();
@@ -47,6 +54,7 @@ function onInit() {
 
     $this->addJs('assets/js/product.js');
 }
+?>
 ==
 {% put pageTitle %}
 {{ obProduct.name }}
@@ -58,4 +66,3 @@ function onInit() {
         {% partial 'product/card' %}
     </div>
 </div>
-
