@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Subscriber
+
+# Model Form Field configuration
+form: $/textiler/main/models/subscriber/fields.yaml
+
+# Model Class name
+modelClass: Textiler\Main\Models\Subscriber
+
+# Default redirect location
+defaultRedirect: textiler/main/subscribers
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: textiler/main/subscribers/update/:id
+    redirectClose: textiler/main/subscribers
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: textiler/main/subscribers
+    redirectClose: textiler/main/subscribers
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

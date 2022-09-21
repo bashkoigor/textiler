@@ -1,0 +1,33 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    product_id:
+        label: ID товара
+        span: left
+        type: text
+    rating:
+        label: Оценка
+        span: left
+        type: dropdown
+        default: 5
+        options:
+            0: 0
+            1: 1
+            2: 2
+            3: 3
+            4: 4
+            5: 5
+    name:
+        label: Имя
+        span: left
+        type: text
+    message:
+        label: Отзыв
+        span: left
+        type: textarea
+    status:
+        span: left
+        type: switch
+

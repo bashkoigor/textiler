@@ -1,0 +1,41 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: id
+        searchable: true
+    name:
+        label: Имя
+        searchable: true
+    surname:
+        label: Фамилия
+        searchable: true
+    email:
+        label: Email
+        searchable: true
+    country:
+        label: Страна
+        searchable: true
+    city:
+        label: Город
+        searchable: true
+    zip_code:
+        label: Индекс
+        searchable: true
+    street:
+        label: Улица
+        searchable: true
+    house:
+        label: Дом
+        searchable: true
+    apartment:
+        label: Квартира
+        searchable: true
+    created_at:
+        label: Создано
+        searchable: true
+    updated_at:
+        label: Обновлено
+        searchable: true

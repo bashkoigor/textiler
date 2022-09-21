@@ -1,0 +1,41 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Имя
+        span: left
+        type: text
+    surname:
+        label: Фамилия
+        span: left
+        type: text
+    email:
+        label: Email
+        span: left
+        type: text
+    country:
+        label: Страна
+        span: left
+        type: text
+    city:
+        label: Город
+        span: left
+        type: text
+    zip_code:
+        label: Индекс
+        span: left
+        type: text
+    street:
+        label: Улица
+        span: left
+        type: text
+    house:
+        label: Дом
+        span: left
+        type: text
+    apartment:
+        label: Квартира
+        span: left
+        type: text

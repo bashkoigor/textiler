@@ -1,0 +1,45 @@
+<form class="row g-3"
+      data-request="{{__SELF__}}::onAddItem"
+      data-request-success="$(this).find('input[type=text], input[type=email]').val('');"
+      data-request-flash>
+    <div class="col-md-6">
+        <label for="inputName" class="form-label">{{ 'Имя'|_ }}</label>
+        <input type="text" class="form-control" id="inputName" name="name">
+    </div>
+    <div class="col-md-6">
+        <label for="inputSurname" class="form-label">{{ 'Фамилия'|_ }}</label>
+        <input type="text" class="form-control" id="inputSurname" name="surname">
+    </div>
+    <div class="col-md-6">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail" name="email">
+    </div>
+    <div class="col-md-6">
+        <label for="inputCountry" class="form-label">{{ 'Страна'|_ }}</label>
+        <input type="text" class="form-control" id="inputCountry" name="country">
+    </div>
+    <div class="col-md-6">
+        <label for="inputCity" class="form-label">{{ 'Город'|_ }}</label>
+        <input type="text" class="form-control" id="inputCity" name="city">
+    </div>
+    <div class="col-md-6">
+        <label for="inputStreet" class="form-label">{{ 'Улица'|_ }}</label>
+        <input type="text" class="form-control" id="inputStreet" name="street">
+    </div>
+    <div class="col-md-2">
+        <label for="inputZip" class="form-label">{{ 'Индекс'|_ }}</label>
+        <input type="text" class="form-control" id="inputZip" name="zip_code">
+    </div>
+
+    <div class="col-md-2">
+        <label for="inputHouse" class="form-label">{{ 'Дом'|_ }}</label>
+        <input type="text" class="form-control" id="inputHouse" name="house">
+    </div>
+    <div class="col-md-2">
+        <label for="inputApartment" class="form-label">{{ 'Квартира'|_ }}</label>
+        <input type="text" class="form-control" id="inputApartment" name="apartment">
+    </div>
+    <div class="col-12 mt-5">
+        <button type="submit" class="btn btn-primary">{{ 'Отправить'|_ }}</button>
+    </div>
+</form>

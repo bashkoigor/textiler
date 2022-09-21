@@ -1,0 +1,29 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: id
+        searchable: true
+    product_id:
+        label: ID товара
+        searchable: true
+    rating:
+        label: Оценка
+        searchable: true
+    status:
+        label: Статус
+        searchable: true
+    name:
+        label: Имя
+        searchable: true
+    message:
+        label: Отзыв
+        searchable: true
+    created_at:
+        label: Создано
+        searchable: true
+    updated_at:
+        label: Обновлено
+        searchable: true

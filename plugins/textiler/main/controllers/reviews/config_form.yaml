@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Review
+
+# Model Form Field configuration
+form: $/textiler/main/models/review/fields.yaml
+
+# Model Class name
+modelClass: Textiler\Main\Models\Review
+
+# Default redirect location
+defaultRedirect: textiler/main/reviews
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: textiler/main/reviews/update/:id
+    redirectClose: textiler/main/reviews
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: textiler/main/reviews
+    redirectClose: textiler/main/reviews
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title
