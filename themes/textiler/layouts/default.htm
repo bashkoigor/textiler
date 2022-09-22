@@ -7,6 +7,10 @@ description = "Default layout"
 [UserData]
 ==
 function onInit() {
+
+    /* Set locale */
+    \RainLab\Translate\Classes\Translator::instance()->setLocale("es");
+
     /* Set currency by locale */
     $arCurrency = [
         "ru" => "RUB",
