@@ -1,4 +1,3 @@
-// http://textiler.loc/catalog/para-la-costura-y-el-bordado/maquinas-de-coser-bordar?property[1]=38|39&property[2]=146
 let obProductListHelper = null;
 let sEventType = 'change';
 let sFiledName = 'property';

@@ -51,46 +51,89 @@ function onInit() {
 $obMainCategoryItem = $this->MainCategoryPage->get();
 $obCategoryItem = $this->CategoryPage->get();
 $iPage = $this->Pagination->getPageFromRequest();
-$sActiveSort = $this->ProductList->getSorting();
+$sActiveSorting = $this->ProductList->getSorting();
 
 if (empty($obCategoryItem)) {
-$obCategory = $obMainCategoryItem;
-$obProductList = $this->ProductList->make()->active()->sort($sActiveSort)->category($obMainCategoryItem->id, true);
+    $obCategory = $obMainCategoryItem;
+    $obProductList = $this->ProductList->make()->active()->sort($sActiveSorting)->category($obMainCategoryItem->id, true);
 } else {
-$obCategory = $obCategoryItem;
-$obProductList = $this->ProductList->make()->active()->sort($sActiveSort)->category($obCategoryItem->id, true);
+    $obCategory = $obCategoryItem;
+    $obProductList = $this->ProductList->make()->active()->sort($sActiveSorting)->category($obCategoryItem->id, true);
 }
 
-//$obFilterProductPropertyList = $obCategory->product_filter_property;
-//$obFilterProductPropertyList = $this->FilterPanel->getProductPropertyList(['obshchie-svojstva'], $obProductList);
-$obFilterProductPropertyList = $obCategory->product_filter_property->setCategory(null)->setProductList($obProductList);
-$arFilterPropertyList = $this->Catalog->getFilterPropertyList();
-$obFilterProductList = $this->Catalog->getFilterProductPropertyList($obProductList, $obCategory);
+//Get filters
+$obPluginManager = \System\Classes\PluginManager::instance();
+if ($obPluginManager->exists('Lovata.FilterShopaholic')) {
 
-$arProductList = $obFilterProductList->page($iPage, $this->Pagination->getCountPerPage());
-$iCount = $obFilterProductList->count();
-$iMaxPage = $this->Pagination->getMaxPage($iCount);
-$iNextPageCount = $this->Pagination->getCountForNextPage($iPage, $iCount);
-$iPageFromRequest = $this->Pagination->getPageFromRequest();
+    //Get price filter
+    $arPriceFilterValue = explode('|', input('price'));
+    $fMinPriceFilterValue = array_get($arPriceFilterValue, 0);
+    $fMaxPriceFilterValue = array_get($arPriceFilterValue, 1);
 
-$this['arFilterPropertyList'] = $arFilterPropertyList;
+    //Get filter by properties
+    $arFilterValue = (array) input('property');
+
+    if (!empty($arFilterValue)) {
+        foreach($arFilterValue as $sKey => &$sValue) {
+            $sValue = explode('|', $sValue);
+        }
+    }
+
+    $iPriceTypeID = \Lovata\Shopaholic\Classes\Helper\PriceTypeHelper::instance()->getActivePriceTypeID();
+    $iPriceTypeCode = \Lovata\Shopaholic\Classes\Helper\PriceTypeHelper::instance()->getActivePriceTypeCode();
+    $obProductPropertyList = $this->FilterPanel->getProductPropertyList(['obshchie-svojstva'], $obProductList);
+    //$obProductPropertyList = $obCategory->product_filter_property;
+    $obOfferPropertyList = $obCategory->offer_filter_property;
+    $arFilterValueWithoutProperty = [];
+
+    $arProductPropertyIdList = $obProductPropertyList->getIDList();
+    foreach($arProductPropertyIdList as $iPropertyID) {
+        $arFilterValueTemp = $arFilterValue;
+        if (isset($arFilterValueTemp[$iPropertyID])) {
+            unset($arFilterValueTemp[$iPropertyID]);
+        }
+
+        $arFilterValueWithoutProperty[$iPropertyID] = $arFilterValueTemp;
+    }
+
+    $obProductList = $obProductList->copy()
+        ->filterByProperty($arFilterValue, $obProductPropertyList)
+        ->filterByProperty($arFilterValue, $obOfferPropertyList)
+        ->filterByPrice($fMinPriceFilterValue, $fMaxPriceFilterValue, $iPriceTypeID);
+
+    $this['fMinPriceFilterValue'] = $fMinPriceFilterValue;
+    $this['fMaxPriceFilterValue'] = $fMaxPriceFilterValue;
+
+    $this['obOfferMinPrice'] = $obProductList->getOfferMinPrice($iPriceTypeCode);
+    $this['obOfferMaxPrice'] = $obProductList->getOfferMaxPrice($iPriceTypeCode);
+
+    $this['arFilterValue'] = $arFilterValue;
+    $this['arFilterValueWithoutProperty'] = $arFilterValueWithoutProperty;
+    $this['obProductPropertyList'] = $obProductPropertyList;
+    $this['obOfferPropertyList'] = $obOfferPropertyList;
+}
+
+$arProductList = $obProductList->page($iPage, $this->Pagination->getCountPerPage());
+$iMaxPage = $this->Pagination->getMaxPage($obProductList->count());
+$iCount = $obProductList->count();
+
 $this['obCategory'] = $obCategory;
 $this['arProductList'] = $arProductList;
-$this['obFilterProductPropertyList'] = $obFilterProductPropertyList;
+$this['obProductList'] = $obProductList;
 $this['iPage'] = $iPage;
 $this['iMaxPage'] = $iMaxPage;
 $this['iCount'] = $iCount;
-$this['sActiveSort'] = $sActiveSort;
-$this['iNextPageCount'] = $iNextPageCount;
-$this['itemFrom'] = $iNextPageCount * $iPageFromRequest;
-$this['item'] = ($iNextPageCount * $iPageFromRequest - $iNextPageCount) + 1;
+$this['sActiveSort'] = $sActiveSorting;
+//$this['iNextPageCount'] = $iNextPageCount;
+//$this['itemFrom'] = $iNextPageCount * $iPageFromRequest;
+//$this['item'] = ($iNextPageCount * $iPageFromRequest - $iNextPageCount) + 1;
 // TODO: Fix pagination
 
 $obMainCategory = $obCategory->parent->isNotEmpty() ? $obCategory->parent : '';
 $this->Breadcrumbs->set(null, $obCategory, $obMainCategory, null);
 $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
 
-$this->addJs('assets/js/filter.js');
+//$this->addJs('assets/js/filter.js');
 }
 ==
 {% put pageTitle %}
@@ -98,5 +141,7 @@ $this->addJs('assets/js/filter.js');
 {% endput %}
 <div class="main">
     {% partial 'breadcrumbs/breadcrumbs' %}
-    {% partial 'catalog/product-list' %}
+    <div class="container category catalog_wrapper">
+        {% partial 'catalog/product-list' %}
+    </div>
 </div>

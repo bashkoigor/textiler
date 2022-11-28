@@ -1,0 +1,25 @@
+<div class="{{ sPartialClasses|default('filter') }}">
+    <input
+        class="{{sInputClass}} {{sIndentsClass|default('filter')}}"
+        type="checkbox"
+        {% if sName %}
+        name="{{ sName }}"
+        {% endif %}
+        {% if sId %}
+        id="{{ sId }}"
+        {% endif %}
+        {% if sValue %}
+        value="{{ sValue }}"
+        {% endif %}
+        {% if bIsRequired %}
+        required
+        {% endif %}
+        {% if sChecked %}
+        checked
+        {% endif %}
+        {% if sDisabled %}
+        disabled
+        {% endif %}
+    >
+    <label for="{{ sId }}" class="{{sTextSize|default('filter')}}">{{ sLabelText|raw}}</label>
+</div>

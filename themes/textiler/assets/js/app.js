@@ -71,13 +71,13 @@ function scrollToTop() {
 }
 
 // Catalog List Grid view switcher
-$("#list-view").click(function(){
+$(document).on('click', '#list-view', (e) => {
     $("#grid-view").removeClass("active");
     $("#list-view").addClass("active");
     $("#grid-list").removeClass("grid");
     $("#grid-list").addClass("list");
 });
-$("#grid-view").click(function(){
+$(document).on('click', '#grid-view', (e) => {
     $("#list-view").removeClass("active");
     $("#grid-view").addClass("active");
     $("#grid-list").removeClass("list");
