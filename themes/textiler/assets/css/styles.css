@@ -573,9 +573,9 @@
 .settings-category .dropdown-menu {border: 1px solid #dfdfdf;}
 
 .pagination li {margin-left: 4px;}
-.pagination li a {background: #dfdfdf; color: white; border: 1px solid #dfdfdf; border-radius: 6px;}
+.pagination li span {background: #dfdfdf; color: white; border: 1px solid #dfdfdf; border-radius: 6px; cursor: pointer;}
 .pagination li .text {background: white; color: #909090; border: 1px solid #dfdfdf;}
-.pagination li a:hover, .pagination li .active {background: #e72627; color: white; border: 1px solid #e72627;}
+.pagination li span:hover, .pagination li .active {background: #e72627; color: white; border: 1px solid #e72627;}
 
 .product #product-carousel, .product #product-thumb-carousel .carousel__slide {border: 1px solid #e6e6e6;}
 .product #product-carousel img {width: 100%;}

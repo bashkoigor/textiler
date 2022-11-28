@@ -1,4 +1,5 @@
 import {ShopaholicProductList} from "./product-list/shopaholic-product-list.js";
+import {ShopaholicPagination} from "./product-list/shopaholic-pagination.js";
 import {ShopaholicFilterPanel} from "./filter/shopaholic-filter-panel.js";
 import {ShopaholicFilterPrice} from "./filter/shopaholic-filter-price.js";
 
@@ -8,6 +9,9 @@ obListHelper.setAjaxRequestCallback((obRequestData) => {
 
     return obRequestData;
 });
+
+const obPaginationHelper = new ShopaholicPagination(obListHelper);
+obPaginationHelper.init();
 
 const obFilterPanel = new ShopaholicFilterPanel(obListHelper);
 obFilterPanel.init();

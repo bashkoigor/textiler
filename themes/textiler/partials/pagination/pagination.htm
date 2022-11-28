@@ -4,10 +4,8 @@
     <nav class="d-flex justify-content-center justify-content-md-end">
         <ul class="pagination mb-0">
             {% for arPagination in arPaginationList %}
-            <li class="page-item">
-                <a class="page-link {{ arPagination.class }}" href="{{ url_current() }}?page={{ arPagination.value }}">
-                    {{ arPagination.name }}
-                </a>
+            <li class="page-item _shopaholic-pagination" data-page="{{ arPagination.value }}">
+                <span class="page-link {{ arPagination.class }}">{{ arPagination.name }}</span>
             </li>
             {% endfor %}
         </ul>
