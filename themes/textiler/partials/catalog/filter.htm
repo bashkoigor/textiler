@@ -3,10 +3,10 @@
         {% if obProductPropertyList.isNotEmpty %}
 
         <div class="col _shopaholic-filter-wrapper" data-filter-type="between-" data-property-id="">
-            {{ 'Precio'|_ }}
-            <div class="_shopaholic-price-filter">
-                <input type="number" name="filter-min-price" value="{{obOfferMinPrice.price_value}}">
-                <input type="number" name="filter-max-price" value="{{obOfferMaxPrice.price_value}}">
+            <p>{{ 'Precio'|_ }}</p>
+            <div class="_shopaholic-price-filter input-group mb-4">
+                <input type="number" name="filter-min-price" value="{{obOfferMinPrice.price_value}}" class="form-control">
+                <input type="number" name="filter-max-price" value="{{obOfferMaxPrice.price_value}}" class="form-control">
             </div>
             <hr>
         </div>
@@ -15,29 +15,36 @@
         {% set obPropertyValueList = obProperty.property_value.sort() %}
         <div class="col _shopaholic-filter-wrapper" data-filter-type="{{obProperty.filter_type}}" data-property-id="{{obProperty.id}}">
             {% if obProperty.filter_type == 'checkbox' %}
+            <p>
                 {{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}, {{ obProperty.measure.name }}{% endif %}
+            </p>
+            <div class="filter-panel">
                 {% for obValue in obPropertyValueList %}
                     {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
                     {% set bDisabled = false %}
+                    {% set sDisplayNone = '' %}
+                    {% if loop.index > 10 %}
+                        {% set sDisplayNone = 'd-none' %}
+                    {% endif %}
                     {% if bChecked == false and arFilterValueWithoutProperty[obProperty.id] is not empty %}
                         {% set obProductListTemp = obProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
                         {% set bDisabled = obValue.isDisabled(obProductListTemp) %}
                     {% endif %}
                     {% partial 'filter/input-checkbox'
-                    sLabelText = obValue.value
-                    sPartialClasses = ''
-                    sInputClass = ''
-                    sDisabled = bDisabled
-                    sChecked= bChecked
-                    sId = obValue.slug
-                    sValue = obValue.slug
+                        sLabelText = obValue.value
+                        sPartialClasses = 'form-check ' ~ sDisplayNone
+                        sInputClass = ''
+                        sDisabled = bDisabled
+                        sChecked= bChecked
+                        sId = obValue.slug
+                        sValue = obValue.slug
                     %}
                 {% endfor %}
-                <hr>
+            </div>
+            <hr>
             {% endif %}
 
             {% if obProperty.filter_type == 'between' %}
-                {{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}, {{ obProperty.measure.name }}{% endif %}
                 {% set arBetweenValue = [] %}
                 {% for obValue in obPropertyValueList %}
                     {% set arBetweenValue = arBetweenValue|merge([obValue.value]) %}
@@ -52,25 +59,10 @@
                 {% if arFilterValue[obProperty.id][1] is not empty %}
                     {% set iMaxValue = arFilterValue[obProperty.id][1] %}
                 {% endif %}
-                <div class="_filter-range flex" data-filter-id="{{ obProperty.id }}">
-                    <fieldset>
-                        {% partial 'filter/input'
-                        sId = obProperty.slug ~ '-min'
-                        type = 'number'
-                        value = iMinValue
-                        min = iMin
-                        placeholder = iMin
-                        %}
-                    </fieldset>
-                    <fieldset>
-                        {% partial 'filter/input'
-                        sId = obProperty.slug ~ '-max'
-                        type = 'number'
-                        value = iMaxValue
-                        max = iMax
-                        placeholder = iMax
-                        %}
-                    </fieldset>
+                <p>{{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}, {{ obProperty.measure.name }}{% endif %}</p>
+                <div class="filter-range input-group mb-4" data-filter-id="{{ obProperty.id }}">
+                    <input type="number" name="filter-min-price" value="{{iMinValue}}" placeholder="{{iMin}}" id="{{obProperty.slug ~ '-min'}}" class="form-control">
+                    <input type="number" name="filter-max-price" value="{{iMaxValue}}" placeholder="{{iMax}}" id="{{obProperty.slug ~ '-max'}}" class="form-control">
                 </div>
                 <hr>
             {% endif %}

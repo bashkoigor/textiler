@@ -800,6 +800,8 @@
 .review { background: #f8f9fa; padding: 20px; border-radius: 7px; margin-bottom: 20px; }
 .star-content .star.active:after { color: gold; }
 
+.filter-panel {max-height: 300px; overflow-x: hidden;}
+
 /* Custom container size, 1240px */
 @media (min-width: 1200px) {
     .container{
