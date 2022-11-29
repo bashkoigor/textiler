@@ -1,5 +1,6 @@
 import {ShopaholicProductList} from "./product-list/shopaholic-product-list.js";
 import {ShopaholicPagination} from "./product-list/shopaholic-pagination.js";
+import {ShopaholicSorting} from "./product-list/shopaholic-sorting.js";
 import {ShopaholicFilterPanel} from "./filter/shopaholic-filter-panel.js";
 import {ShopaholicFilterPrice} from "./filter/shopaholic-filter-price.js";
 
@@ -12,6 +13,9 @@ obListHelper.setAjaxRequestCallback((obRequestData) => {
 
 const obPaginationHelper = new ShopaholicPagination(obListHelper);
 obPaginationHelper.init();
+
+const obSortingHelper = new ShopaholicSorting(obListHelper);
+obSortingHelper.init();
 
 const obFilterPanel = new ShopaholicFilterPanel(obListHelper);
 obFilterPanel.init();
