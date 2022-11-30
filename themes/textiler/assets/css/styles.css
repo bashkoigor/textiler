@@ -732,6 +732,13 @@
 .faqs .accordion-button:focus {box-shadow: none; border-color: rgba(0,0,0,.125);}
 .faqs .accordion-button:not(.collapsed) {color: black; box-shadow: none;}
 .faqs .accordion-button {background-color: #fafafa; font-weight: 500;}
+
+.filter_wrapper .accordion-item {border: none; margin: 5px 0;}
+.filter_wrapper .accordion-body {padding: 20px; background-color: #fafafa; font-size: 16px;}
+.filter_wrapper .accordion-button:focus {box-shadow: none; border-color: rgba(0,0,0,.125);}
+.filter_wrapper .accordion-button:not(.collapsed) {color: black; box-shadow: none;}
+.filter_wrapper .accordion-button {background-color: #fafafa; font-weight: 500;}
+
 .about .banner {
     background-image: url(../img/bg_about_us_1.jpg) !important;
     background-position: 0 0 !important;
@@ -801,6 +808,8 @@
 .star-content .star.active:after { color: gold; }
 
 .filter-panel {max-height: 300px; overflow-x: hidden;}
+.filter-panel .form-check {padding-left: 2em;}
+.filter-show-more {cursor: pointer; color: gray; font-size: 13px;}
 
 /* Custom container size, 1240px */
 @media (min-width: 1200px) {

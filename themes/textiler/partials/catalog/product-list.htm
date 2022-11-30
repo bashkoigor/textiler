@@ -1,104 +1,94 @@
-<div class="row">
-    <div class="col-lg-3">
-        <div class="title">
-            <h6>{{ obCategory.name }}</h6>
-        </div>
+<p>{{ object.date|date('H:i:s') }}</p>
+<h4 class="mb-5">{{ obCategory.name }}</h4>
+
+<div class="row mb-5 gx-1 settings-category">
+
+    <div class="col-xl-2 col-lg-2 col-md-2 d-md-block d-none">
+        <div id="grid-view" class="active"><i class="fa fa-th"></i></div>
+        <div id="list-view"><i class="fa fa-bars"></i></div>
+    </div>
+
+    <div class="col-xl-2 col-lg-5 col-md-5 col-sm-6 col-6 d-flex align-self-center">
+        Hay {{iNextPageCount}} productos.
+    </div>
+
+    <div class="col-xl-5 d-xl-block d-none d-flex align-self-center">
         <hr>
-        {% partial 'catalog/filter' %}
     </div>
-    <div class="col-lg-9">
-        <h4 class="mb-5">{{ obCategory.name }}</h4>
 
-        <div class="row mb-5 gx-1 settings-category">
+    <div class="col-xl-3 col-lg-5 col-md-5 col-sm-6 col-6">
 
-            <div class="col-xl-2 col-lg-2 col-md-2 d-md-block d-none">
-                <div id="grid-view" class="active"><i class="fa fa-th"></i></div>
-                <div id="list-view"><i class="fa fa-bars"></i></div>
-            </div>
+        <select class="form-select _shopaholic-sorting" aria-label="Default select example">
+            <option {% if sActiveSort == 'price|asc|EUR' %}selected{% endif %} value="price|asc|EUR">{{ 'Barato'|_ }}</option>
+            <option {% if sActiveSort == 'price|desc|EUR' %}selected{% endif %} value="price|desc|EUR">{{ 'Caro'|_ }}</option>
+            <option {% if sActiveSort == 'new' %}selected{% endif %} value="new">{{ 'Nueva'|_ }}</option>
+        </select>
 
-            <div class="col-xl-2 col-lg-5 col-md-5 col-sm-6 col-6 d-flex align-self-center">
-                Hay {{iNextPageCount}} productos.
-            </div>
-
-            <div class="col-xl-5 d-xl-block d-none d-flex align-self-center">
-                <hr>
-            </div>
-
-            <div class="col-xl-3 col-lg-5 col-md-5 col-sm-6 col-6">
-                <select class="_shopaholic-sorting">
-                    <option value="popularity|desc">Popular</option>
-                    <option value="price|desc|EUR">Expensive</option>
-                    <option value="price|asc|EUR">Cheap</option>
-                    <option value="new">New</option>
-                </select>
-                <div class="dropdown d-flex justify-content-end d-none">
-                    <button class="btn btn-sort dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="{{ url_current() }}?sort=price|asc|EUR">Price asc</a></li>
-                        <li><a class="dropdown-item" href="{{ url_current() }}?sort=price|desc|EUR">Price desc</a></li>
-                        <li><a class="dropdown-item" href="{{ url_current() }}?sort=new">New</a></li>
-                        <li><a class="dropdown-item" href="{{ url_current() }}?sort=no">No</a></li>
-                    </ul>
-                </div>
-            </div>
-
+        <div class="dropdown d-flex justify-content-end d-none">
+            <button class="btn btn-sort dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{{ url_current() }}?sort=price|asc|EUR">Price asc</a></li>
+                <li><a class="dropdown-item" href="{{ url_current() }}?sort=price|desc|EUR">Price desc</a></li>
+                <li><a class="dropdown-item" href="{{ url_current() }}?sort=new">New</a></li>
+                <li><a class="dropdown-item" href="{{ url_current() }}?sort=no">No</a></li>
+            </ul>
         </div>
-
-        {% if arProductList is not empty %}
-        <div class="row grid my-4" id="grid-list">
-            {% for obProduct in arProductList %}
-            {% set obOffer = obProduct.offer.first() %}
-            <div class="column col-md-4 col-6">
-                <div class="item product-wrapper">
-                    <div class="image">
-                        <a href="{{ obProduct.getPageUrl('product') }}">
-                            <img src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
-                        </a>
-                    </div>
-                    <div class="description">
-                        <div class="title">
-                            <a href="{{ obProduct.getPageUrl('product') }}">{{ obProduct.name }}</a>
-                        </div>
-                        <div class="info">
-                            <div class="star-content">
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                                <div class="star"></div>
-                            </div>
-                            <div class="price">{{ obOffer.price }} {{ obOffer.currency }}</div>
-                            <div class="text">{{ obProduct.preview_text }}</div>
-                        </div>
-                        <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
-                        <input type="hidden" name="quantity" value="1">
-                        <button type="button" class="btn btn-add-to-cart">
-                            <i class="in-cart-icon" aria-hidden="true"></i> {{ 'Añadir al carrito'|_ }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <p>{{ 'Productos no encontrados'|_ }}</p>
-        {% endif %}
-
-        <div class="row mb-5 gx-1 settings-category">
-
-            <div class="col-xl-4 col-lg-6 col-md-6 d-md-block d-none col-12 d-flex align-self-center">
-                Mostrando {{item}} - {{itemFrom}} de {{iCount}} artículo(s)
-            </div>
-
-            <div class="col-xl-3 d-xl-block d-none d-flex align-self-center">
-                <hr>
-            </div>
-
-            {% partial 'pagination/pagination' %}
-
-        </div>
-
     </div>
+
+</div>
+
+{% if arProductList is not empty %}
+<div class="row grid my-4" id="grid-list">
+    {% for obProduct in arProductList %}
+    {% set obOffer = obProduct.offer.first() %}
+    <div class="column col-md-4 col-6">
+        <div class="item product-wrapper">
+            <div class="image">
+                <a href="{{ obProduct.getPageUrl('product') }}">
+                    <img src="{{ obProduct.preview_image.path }}" alt="{{ obProduct.preview_image.description }}" title="{{ obProduct.preview_image.title }}">
+                </a>
+            </div>
+            <div class="description">
+                <div class="title">
+                    <a href="{{ obProduct.getPageUrl('product') }}">{{ obProduct.name }}</a>
+                </div>
+                <div class="info">
+                    <div class="star-content">
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                    </div>
+                    <div class="price">{{ obOffer.price }} {{ obOffer.currency }}</div>
+                    <div class="text">{{ obProduct.preview_text }}</div>
+                </div>
+                <input type="hidden" name="offer_id" value="{{ obOffer.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="button" class="btn btn-add-to-cart">
+                    <i class="in-cart-icon" aria-hidden="true"></i> {{ 'Añadir al carrito'|_ }}
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>{{ 'Productos no encontrados'|_ }}</p>
+{% endif %}
+
+<div class="row mb-5 gx-1 settings-category">
+
+    <div class="col-xl-4 col-lg-6 col-md-6 d-md-block d-none col-12 d-flex align-self-center">
+        Mostrando {{item}} - {{itemFrom}} de {{iCount}} artículo(s)
+    </div>
+
+    <div class="col-xl-3 d-xl-block d-none d-flex align-self-center">
+        <hr>
+    </div>
+
+    {% partial 'pagination/pagination' %}
+
 </div>

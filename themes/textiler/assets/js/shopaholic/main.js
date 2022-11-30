@@ -22,3 +22,25 @@ obFilterPanel.init();
 
 const obFilterPrice = new ShopaholicFilterPrice(obListHelper);
 obFilterPrice.setEventType('blur').init();
+
+/* Filter show more/less */
+const elements = document.getElementsByClassName('filter-show-more');
+
+Array.from(elements).forEach(function(element) {
+    element.addEventListener('click', (event) => {
+        Array.from(element.previousSibling.previousSibling.querySelectorAll('div'))
+            .forEach(function(div) {
+                if (div.classList.contains("d-none")) {
+                    div.classList.remove("d-none");
+                    div.classList.add("d-block");
+                    element.textContent = element.dataset.textLess;
+                } else if (div.classList.contains("d-block")) {
+                    div.classList.remove("d-block");
+                    div.classList.add("d-none");
+                    element.textContent = element.dataset.textMore;
+                }
+            });
+    });
+});
+
+

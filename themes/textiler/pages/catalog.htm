@@ -132,8 +132,6 @@ $this['sActiveSort'] = $sActiveSorting;
 $obMainCategory = $obCategory->parent->isNotEmpty() ? $obCategory->parent : '';
 $this->Breadcrumbs->set(null, $obCategory, $obMainCategory, null);
 $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
-
-//$this->addJs('assets/js/filter.js');
 }
 ==
 {% put pageTitle %}
@@ -141,7 +139,14 @@ $this['arBreadcrumbs'] = $this->Breadcrumbs->get();
 {% endput %}
 <div class="main">
     {% partial 'breadcrumbs/breadcrumbs' %}
-    <div class="container category catalog_wrapper">
-        {% partial 'catalog/product-list' %}
+    <div class="container category">
+        <div class="row">
+            <div class="col-lg-3 filter_wrapper">
+                {% partial 'catalog/filter' %}
+            </div>
+            <div class="col-lg-9 catalog_wrapper">
+                {% partial 'catalog/product-list' %}
+            </div>
+        </div>
     </div>
 </div>

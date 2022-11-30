@@ -1,75 +1,119 @@
+<div class="title">
+    <h6>{{ obCategory.name }}</h6>
+</div>
+<hr>
 <div class="container my-5">
     <div class="row row-cols-1">
         {% if obProductPropertyList.isNotEmpty %}
 
-        <div class="col _shopaholic-filter-wrapper" data-filter-type="between-" data-property-id="">
-            <p>{{ 'Precio'|_ }}</p>
-            <div class="_shopaholic-price-filter input-group mb-4">
-                <input type="number" name="filter-min-price" value="{{obOfferMinPrice.price_value}}" class="form-control">
-                <input type="number" name="filter-max-price" value="{{obOfferMaxPrice.price_value}}" class="form-control">
+        <div class="accordion" id="accordionFilterPrice">
+            <div class="col _shopaholic-filter-wrapper">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="priceRange">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_price" aria-expanded="true" aria-controls="collapse_price">
+                            {{ 'Precio'|_ }}
+                        </button>
+                    </h2>
+                    <div id="collapse_price" class="accordion-collapse collapse show" aria-labelledby="priceRange" data-bs-parent="#accordionFilterPrice">
+                        <div class="accordion-body">
+                            <div class="_shopaholic-price-filter input-group mb-4">
+                                <input type="number" name="filter-min-price" value="{{obOfferMinPrice.price_value}}" class="form-control">
+                                <input type="number" name="filter-max-price" value="{{obOfferMaxPrice.price_value}}" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <hr>
         </div>
 
+        {% set iDisplayLimitProperty = 3 %}
+        {% set iDisplayLimitPropertyValue = 10 %}
         {% for obProperty in obProductPropertyList if obProperty.hasValue() %}
         {% set obPropertyValueList = obProperty.property_value.sort() %}
-        <div class="col _shopaholic-filter-wrapper" data-filter-type="{{obProperty.filter_type}}" data-property-id="{{obProperty.id}}">
-            {% if obProperty.filter_type == 'checkbox' %}
-            <p>
-                {{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}, {{ obProperty.measure.name }}{% endif %}
-            </p>
-            <div class="filter-panel">
-                {% for obValue in obPropertyValueList %}
-                    {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
-                    {% set bDisabled = false %}
-                    {% set sDisplayNone = '' %}
-                    {% if loop.index > 10 %}
-                        {% set sDisplayNone = 'd-none' %}
-                    {% endif %}
-                    {% if bChecked == false and arFilterValueWithoutProperty[obProperty.id] is not empty %}
-                        {% set obProductListTemp = obProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
-                        {% set bDisabled = obValue.isDisabled(obProductListTemp) %}
-                    {% endif %}
-                    {% partial 'filter/input-checkbox'
-                        sLabelText = obValue.value
-                        sPartialClasses = 'form-check ' ~ sDisplayNone
-                        sInputClass = ''
-                        sDisabled = bDisabled
-                        sChecked= bChecked
-                        sId = obValue.slug
-                        sValue = obValue.slug
-                    %}
-                {% endfor %}
-            </div>
-            <hr>
-            {% endif %}
+        {% set sCollapsed = '' %}
+        {% set sShow = 'show' %}
+        {% if loop.index > iDisplayLimitProperty %}
+            {% set sCollapsed = 'collapsed' %}
+            {% set sShow = '' %}
+        {% endif %}
+        <div class="accordion" id="accordionFilter{{loop.index}}">
+            <div class="col _shopaholic-filter-wrapper" data-filter-type="{{obProperty.filter_type}}" data-property-id="{{obProperty.id}}">
+                {% if obProperty.filter_type == 'checkbox' %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="{{obProperty.slug}}">
+                            <button class="accordion-button {{sCollapsed}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{obProperty.id}}" aria-expanded="true" aria-controls="collapse_{{obProperty.id}}">
+                                {{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}, {{ obProperty.measure.name }}{% endif %}
+                            </button>
+                        </h2>
+                        <div id="collapse_{{obProperty.id}}" class="accordion-collapse collapse {{sShow}}" aria-labelledby="{{obProperty.slug}}" data-bs-parent="#accordionFilter{{loop.index}}">
+                            <div class="accordion-body">
+                                <div class="filter-panel">
+                                    {% for obValue in obPropertyValueList %}
+                                        {% set bChecked = arFilterValue[obProperty.id] is not empty and obValue.slug in arFilterValue[obProperty.id] %}
+                                        {% set bDisabled = false %}
+                                        {% set sDisplayNone = '' %}
+                                        {% if loop.index > iDisplayLimitPropertyValue %}
+                                            {% set sDisplayNone = 'd-none' %}
+                                        {% endif %}
+                                        {% if bChecked == false and arFilterValueWithoutProperty[obProperty.id] is not empty %}
+                                            {% set obProductListTemp = obProductList.copy().filterByProperty(arFilterValueWithoutProperty[obProperty.id], obProductPropertyList).filterByProperty(arFilterValueWithoutProperty[obProperty.id], obOfferPropertyList) %}
+                                            {% set bDisabled = obValue.isDisabled(obProductListTemp) %}
+                                        {% endif %}
+                                        {% partial 'filter/input-checkbox'
+                                            sLabelText = obValue.value
+                                            sPartialClasses = 'form-check ' ~ sDisplayNone
+                                            sInputClass = ''
+                                            sDisabled = bDisabled
+                                            sChecked= bChecked
+                                            sId = obValue.slug
+                                            sValue = obValue.slug
+                                        %}
+                                    {% endfor %}
+                                </div>
+                                {% if obPropertyValueList|length > iDisplayLimitPropertyValue %}
+                                <div class="filter-show-more mt-3" data-text-more="{{ 'Mostrar más'|_ }}" data-text-less="{{ 'Muestra menos'|_ }}">
+                                    {{ 'Mostrar más'|_ }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
 
-            {% if obProperty.filter_type == 'between' %}
-                {% set arBetweenValue = [] %}
-                {% for obValue in obPropertyValueList %}
-                    {% set arBetweenValue = arBetweenValue|merge([obValue.value]) %}
-                {% endfor %}
-                {% set iMin = min(arBetweenValue) %}
-                {% set iMax = max(arBetweenValue) %}
-                {% set iMinValue = iMin %}
-                {% set iMaxValue = iMax %}
-                {% if arFilterValue[obProperty.id][0] is not empty %}
-                    {% set iMinValue = arFilterValue[obProperty.id][0] %}
+                {% if obProperty.filter_type == 'between' %}
+                    {% set arBetweenValue = [] %}
+                    {% for obValue in obPropertyValueList %}
+                        {% set arBetweenValue = arBetweenValue|merge([obValue.value]) %}
+                    {% endfor %}
+                    {% set iMin = min(arBetweenValue) %}
+                    {% set iMax = max(arBetweenValue) %}
+                    {% set iMinValue = iMin %}
+                    {% set iMaxValue = iMax %}
+                    {% if arFilterValue[obProperty.id][0] is not empty %}
+                        {% set iMinValue = arFilterValue[obProperty.id][0] %}
+                    {% endif %}
+                    {% if arFilterValue[obProperty.id][1] is not empty %}
+                        {% set iMaxValue = arFilterValue[obProperty.id][1] %}
+                    {% endif %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="{{obProperty.slug}}">
+                            <button class="accordion-button {{sCollapsed}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{obProperty.id}}" aria-expanded="true" aria-controls="collapse_{{obProperty.id}}">
+                                {{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}, {{ obProperty.measure.name }}{% endif %}
+                            </button>
+                        </h2>
+                        <div id="collapse_{{obProperty.id}}" class="accordion-collapse collapse {{sShow}}" aria-labelledby="{{obProperty.slug}}" data-bs-parent="#accordionFilter{{loop.index}}">
+                            <div class="accordion-body">
+                                <div class="filter-range input-group mb-4" data-filter-id="{{ obProperty.id }}">
+                                    <input type="number" name="filter-min-price" value="{{iMinValue}}" placeholder="{{iMin}}" id="{{obProperty.slug ~ '-min'}}" class="form-control">
+                                    <input type="number" name="filter-max-price" value="{{iMaxValue}}" placeholder="{{iMax}}" id="{{obProperty.slug ~ '-max'}}" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
-                {% if arFilterValue[obProperty.id][1] is not empty %}
-                    {% set iMaxValue = arFilterValue[obProperty.id][1] %}
-                {% endif %}
-                <p>{{ obProperty.filter_name }} {% if obProperty.measure.isNotEmpty() %}, {{ obProperty.measure.name }}{% endif %}</p>
-                <div class="filter-range input-group mb-4" data-filter-id="{{ obProperty.id }}">
-                    <input type="number" name="filter-min-price" value="{{iMinValue}}" placeholder="{{iMin}}" id="{{obProperty.slug ~ '-min'}}" class="form-control">
-                    <input type="number" name="filter-max-price" value="{{iMaxValue}}" placeholder="{{iMax}}" id="{{obProperty.slug ~ '-max'}}" class="form-control">
-                </div>
-                <hr>
-            {% endif %}
+            </div>
         </div>
         {% endfor %}
         {% endif %}
     </div>
 </div>
-
-
