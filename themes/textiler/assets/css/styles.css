@@ -550,7 +550,7 @@
 .category .grid .item .description .info .text {display: none;}
 .category .list .item .description .info .text {margin-top: 20px;}
 .category .item {border-radius: 5px; width: 100%;}
-.category .item .title a {text-decoration: none; font-size: 12px; color: black; margin-bottom: 8px; display: block;}
+.category .item .title a {text-decoration: none; font-size: 12px; color: black; margin-bottom: 8px; display: block; overflow-wrap: anywhere;}
 .category .item a:hover {color: #e72627;}
 .category .item .image img {width: 100%;}
 .category .list .column {width: 100%;}
@@ -734,10 +734,10 @@
 .faqs .accordion-button {background-color: #fafafa; font-weight: 500;}
 
 .filter_wrapper .accordion-item {border: none; margin: 5px 0;}
-.filter_wrapper .accordion-body {padding: 20px; background-color: #fafafa; font-size: 16px;}
+.filter_wrapper .accordion-body {padding: 20px; background-color: #f2f3f7; font-size: 16px;}
 .filter_wrapper .accordion-button:focus {box-shadow: none; border-color: rgba(0,0,0,.125);}
 .filter_wrapper .accordion-button:not(.collapsed) {color: black; box-shadow: none;}
-.filter_wrapper .accordion-button {background-color: #fafafa; font-weight: 500;}
+.filter_wrapper .accordion-button {background-color: #f2f3f7; font-weight: 500;}
 
 .about .banner {
     background-image: url(../img/bg_about_us_1.jpg) !important;
