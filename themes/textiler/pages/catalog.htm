@@ -123,6 +123,8 @@ $this['obProductList'] = $obProductList;
 $this['iPage'] = $iPage;
 $this['iMaxPage'] = $iMaxPage;
 $this['iCount'] = $iCount;
+// TODO: fix double load
+//error_log($iCount . " - ", 3, "/var/www/vhosts/textiler.es/httpdocs/themes/textiler/pages/log.txt");
 $this['sActiveSort'] = $sActiveSorting;
 //$this['iNextPageCount'] = $iNextPageCount;
 //$this['itemFrom'] = $iNextPageCount * $iPageFromRequest;
