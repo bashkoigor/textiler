@@ -21,7 +21,7 @@ const obFilterPanel = new ShopaholicFilterPanel(obListHelper);
 obFilterPanel.init();
 
 const obFilterPrice = new ShopaholicFilterPrice(obListHelper);
-obFilterPrice.setEventType('blur').init();
+obFilterPrice.setEventType('change').init();
 
 /* Filter show more/less */
 const elements = document.getElementsByClassName('filter-show-more');
